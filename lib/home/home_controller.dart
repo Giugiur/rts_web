@@ -1,15 +1,31 @@
 import 'package:get/get.dart';
+import 'package:video_player/video_player.dart';
 import '../utils/constants.dart';
 
 class HomeController extends GetxController {
 
-  void sendToHome() {
-    Get.to(HOME);
+  late VideoPlayerController videoController;
+  String videoDir = 'images/home_intro.mp4';
+
+  @override dispose() {
+    videoController.dispose();
+    super.dispose();
   }
 
   @override
   void onInit() {
-    // TODO: implement onInit
+    videoController = VideoPlayerController.asset(
+        videoDir
+    )..initialize().then((_) {
+
+    });
+    videoController.setLooping(true);
+    videoController.setVolume(0);
+    videoController.play();
     super.onInit();
   }
+
+  get videoPlayerController => videoController;
+  get videoPlayerDir => videoDir;
+
 }

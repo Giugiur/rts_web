@@ -16,7 +16,7 @@ class _HomeScaffoldState extends State<HomeScaffold> with SingleTickerProviderSt
   void initState() {
     _animationController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 1),
+      duration: const Duration(milliseconds: 800),
     );
     super.initState();
   }
@@ -47,11 +47,16 @@ class _HomeScaffoldState extends State<HomeScaffold> with SingleTickerProviderSt
               ),
             ),
             AppBar(
-              leading: GestureDetector(
-                onTap: _tapIcon,
-                child: AnimatedIcon(
-                  icon: AnimatedIcons.menu_close,
-                  progress: _animationController,
+              leading: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 10.0),
+                child: GestureDetector(
+                  onTap: _tapIcon,
+                  child: AnimatedIcon(
+                    icon: AnimatedIcons.menu_close,
+                    progress: _animationController,
+                    size: 35,
+                    color: Colors.white,
+                  ),
                 ),
               ),
               elevation: 0,
