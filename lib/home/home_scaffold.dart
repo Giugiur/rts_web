@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/snackbar/snackbar.dart';
+
+import 'home_controller.dart';
 
 class HomeScaffold extends StatefulWidget {
   final Widget body;
@@ -35,34 +40,37 @@ class _HomeScaffoldState extends State<HomeScaffold> with SingleTickerProviderSt
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
 
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Stack(
-          children: [
-            SafeArea(
-              child: Container(
-                width: deviceSize.width,
-                height: deviceSize.height,
-                child: widget.body,
-              ),
-            ),
-            AppBar(
-              leading: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 10.0),
-                child: GestureDetector(
-                  onTap: _tapIcon,
-                  child: AnimatedIcon(
-                    icon: AnimatedIcons.menu_close,
-                    progress: _animationController,
-                    size: 35,
-                    color: Colors.white,
-                  ),
+    return GetBuilder<HomeController>(
+      init: HomeController(),
+      builder: (homeController) => Scaffold(
+        body: SingleChildScrollView(
+          child: Stack(
+            children: [
+              SafeArea(
+                child: SizedBox(
+                  width: deviceSize.width,
+                  height: deviceSize.height,
+                  child: widget.body,
                 ),
               ),
-              elevation: 0,
-              backgroundColor: Colors.transparent,
-            ),
-          ],
+              AppBar(
+                leading: Padding(
+                  padding: const EdgeInsets.all(14.0),
+                  child: GestureDetector(
+                    onTap: _tapIcon,
+                    child: AnimatedIcon(
+                      icon: AnimatedIcons.menu_close,
+                      progress: _animationController,
+                      size: 40,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                elevation: 0,
+                backgroundColor: Colors.transparent,
+              ),
+            ],
+          ),
         ),
       ),
     );

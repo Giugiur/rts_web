@@ -8,7 +8,6 @@ class SplashScreenController extends GetxController {
     Timer(Duration(seconds: 2), () {
       Get.toNamed(HOME);
     });
-
   }
 
   @override

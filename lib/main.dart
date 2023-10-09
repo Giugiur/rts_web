@@ -3,23 +3,23 @@ import 'package:get/get.dart';
 import 'home/home_view.dart';
 import 'splash_screen/splash_screen_view.dart';
 import 'utils/constants.dart';
+import 'utils/theme.dart';
+import 'package:get_storage/get_storage.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  await GetStorage.init();
+  runApp(const RtsWebApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class RtsWebApp extends StatelessWidget {
+  const RtsWebApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Wartorn',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: darkTheme,
       home: const SplashScreen(),
       getPages: [
         GetPage(name: HOME, page: () => const HomeView(), transition: Transition.fadeIn),

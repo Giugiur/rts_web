@@ -1,31 +1,47 @@
+import 'dart:async';
+
+import 'package:flutter/gestures.dart';
 import 'package:get/get.dart';
-import 'package:video_player/video_player.dart';
-import '../utils/constants.dart';
+import 'package:rts_web/tracking/tracking_controller.dart';
 
 class HomeController extends GetxController {
 
-  late VideoPlayerController videoController;
-  String videoDir = 'images/home_intro.mp4';
+  bool scaleEnabled = true;
+  int scrolledDown = 0;
+  int scrolledUp = 0;
+  TrackingController trackingController = Get.put(TrackingController());
 
-  @override dispose() {
-    videoController.dispose();
-    super.dispose();
+  void listenForScrolling(pointerSignal) {
+    if (pointerSignal is PointerScrollEvent) {
+      if (pointerSignal.scrollDelta.dx == 0 && pointerSignal.scrollDelta.dy == 100) {
+        if (scrolledDown < 10) {
+          scrolledDown++;
+        }
+        if (scrolledUp > 0) {
+          scrolledUp--;
+        }
+        update();
+      }
+      if (pointerSignal.scrollDelta.dy == -100) {
+        if (scrolledUp < 10) {
+          scrolledUp++;
+        }
+        if (scrolledDown > 0) {
+          scrolledDown--;
+        }
+        update();
+      }
+    }
   }
 
-  @override
   void onInit() {
-    videoController = VideoPlayerController.asset(
-        videoDir
-    )..initialize().then((_) {
-
-    });
-    videoController.setLooping(true);
-    videoController.setVolume(0);
-    videoController.play();
     super.onInit();
+    executeAfterBuild();
   }
 
-  get videoPlayerController => videoController;
-  get videoPlayerDir => videoDir;
+  Future<void> executeAfterBuild() async {
+    await Future.delayed(Duration.zero);
+    trackingController.showTrackingBanner();
+  }
 
 }
