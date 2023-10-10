@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/gestures.dart';
 import 'package:get/get.dart';
 import 'package:rts_web/tracking/tracking_controller.dart';
@@ -19,6 +20,7 @@ class HomeController extends GetxController {
         }
         if (scrolledUp > 0) {
           scrolledUp--;
+
         }
         update();
       }
@@ -34,6 +36,7 @@ class HomeController extends GetxController {
     }
   }
 
+  @override
   void onInit() {
     super.onInit();
     executeAfterBuild();

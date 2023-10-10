@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "248883859327",
+    "project_id": "rts-web-e78d3",
+    "storage_bucket": "rts-web-e78d3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:248883859327:android:5ca7ec550c8c0748c1944a",
+        "android_client_info": {
+          "package_name": "com.example.rts_web"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuagyUONFWK-m15EFlcWBc2eFHyBF0CSU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

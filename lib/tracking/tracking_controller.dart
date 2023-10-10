@@ -1,16 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-
-enum COOKIES {
-  ACCEPTED,
-  REJECTED,
-}
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 
 class TrackingController extends GetxController {
 
+  @override
+  void onInit() {
+    super.onInit();
+    if (isTrackingEnabled()) {
+      initializeTracking();
+    }
+  }
+
+  void trackEvent(String event) {
+    if (isTrackingEnabled()) {
+      FirebaseAnalytics.instance.logEvent(name: event);
+    }
+  }
+
   void showTrackingBanner() {
-    if (GetStorage().read('cookies') != 'accepted') {
+    if (!isTrackingEnabled()) {
       Get.snackbar(
         '',
         "We use cookies to enhance your experience and analyze our site usage. Please see our Privacy Policy for more information.",
@@ -31,5 +43,17 @@ class TrackingController extends GetxController {
   void acceptAllCookies() {
     GetStorage().write('cookies', 'accepted');
     Get.closeCurrentSnackbar();
+    initializeTracking();
+  }
+
+  Future<void> initializeTracking() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  }
+
+  bool isTrackingEnabled() {
+    return GetStorage().read('cookies') == 'accepted';
   }
 }
