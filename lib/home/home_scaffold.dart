@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/snackbar/snackbar.dart';
-
 import 'home_controller.dart';
 
 class HomeScaffold extends StatefulWidget {
@@ -16,6 +13,7 @@ class HomeScaffold extends StatefulWidget {
 
 class _HomeScaffoldState extends State<HomeScaffold> with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
+  bool iconTapped = false;
 
   @override
   void initState() {
@@ -25,7 +23,7 @@ class _HomeScaffoldState extends State<HomeScaffold> with SingleTickerProviderSt
     );
     super.initState();
   }
-  bool iconTapped = false;
+
   void _tapIcon() {
     if (iconTapped) {
       _animationController.reverse();
@@ -54,8 +52,9 @@ class _HomeScaffoldState extends State<HomeScaffold> with SingleTickerProviderSt
                 ),
               ),
               AppBar(
-                leading: Padding(
-                  padding: const EdgeInsets.all(14.0),
+                toolbarHeight: 100,
+                leading: Container(
+                  margin: const EdgeInsets.all(20.0),
                   child: GestureDetector(
                     onTap: _tapIcon,
                     child: AnimatedIcon(
@@ -66,6 +65,31 @@ class _HomeScaffoldState extends State<HomeScaffold> with SingleTickerProviderSt
                     ),
                   ),
                 ),
+                // actions: [
+                //   Container(
+                //     margin: const EdgeInsets.symmetric(horizontal: 20),
+                //     child: TextButton(
+                //       onPressed: () {},
+                //       child: Row(
+                //         mainAxisSize: MainAxisSize.min,
+                //         children: [
+                //           Text(
+                //             'Marketplace'.toUpperCase(),
+                //             style: Theme.of(context).textTheme.labelLarge,
+                //           ),
+                //           const SizedBox(
+                //             width: 5,
+                //           ),
+                //           const Icon(
+                //             Icons.double_arrow,
+                //             size: 24.0,
+                //             color: Colors.white,
+                //           ),
+                //         ],
+                //       ),
+                //     ),
+                //   ),
+                // ],
                 elevation: 0,
                 backgroundColor: Colors.transparent,
               ),
