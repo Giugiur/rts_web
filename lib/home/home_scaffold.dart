@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'home_controller.dart';
+import '../utils/utils.dart';
 
 class HomeScaffold extends StatefulWidget {
   final Widget body;
@@ -45,17 +46,17 @@ class _HomeScaffoldState extends State<HomeScaffold> with SingleTickerProviderSt
           child: Stack(
             children: [
               SafeArea(
-                child: SizedBox(
+                child: Container(
+                  decoration: gradientDecoration,
                   width: deviceSize.width,
                   height: deviceSize.height,
                   child: widget.body,
                 ),
               ),
               AppBar(
-                toolbarHeight: 100,
                 leading: Container(
-                  margin: const EdgeInsets.all(20.0),
-                  child: GestureDetector(
+                  margin: const EdgeInsets.only(top: 20, left: 20),
+                  child: InkWell(
                     onTap: _tapIcon,
                     child: AnimatedIcon(
                       icon: AnimatedIcons.menu_close,
@@ -65,31 +66,6 @@ class _HomeScaffoldState extends State<HomeScaffold> with SingleTickerProviderSt
                     ),
                   ),
                 ),
-                // actions: [
-                //   Container(
-                //     margin: const EdgeInsets.symmetric(horizontal: 20),
-                //     child: TextButton(
-                //       onPressed: () {},
-                //       child: Row(
-                //         mainAxisSize: MainAxisSize.min,
-                //         children: [
-                //           Text(
-                //             'Marketplace'.toUpperCase(),
-                //             style: Theme.of(context).textTheme.labelLarge,
-                //           ),
-                //           const SizedBox(
-                //             width: 5,
-                //           ),
-                //           const Icon(
-                //             Icons.double_arrow,
-                //             size: 24.0,
-                //             color: Colors.white,
-                //           ),
-                //         ],
-                //       ),
-                //     ),
-                //   ),
-                // ],
                 elevation: 0,
                 backgroundColor: Colors.transparent,
               ),

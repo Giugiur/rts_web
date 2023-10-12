@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rts_web/marketplace/marketplace_view.dart';
 import 'home/home_view.dart';
 import 'splash_screen/splash_screen_view.dart';
 import 'utils/constants.dart';
@@ -23,6 +24,7 @@ class RtsWebApp extends StatelessWidget {
       home: const SplashScreen(),
       getPages: [
         GetPage(name: HOME, page: () => const HomeView(), transition: Transition.fadeIn),
+        GetPage(name: MARKETPLACE, page: () => const MarketplaceView(), transition: Transition.fadeIn),
       ]
     );
   }

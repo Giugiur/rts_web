@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rts_web/utils/constants.dart';
 import 'package:video_player/video_player.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import 'home_controller.dart';
@@ -81,6 +82,46 @@ class _HomeIntroSectionState extends State<HomeIntroSection> {
                     ),
                   ),
                 ),
+              ),
+            ),
+            AnimatedOpacity(
+              opacity: homeController.scrolled ? 1.0 : 0.0,
+              duration: const Duration(milliseconds: 500),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 50.0),
+                  child: OutlinedButton(
+                    onPressed: () => Get.toNamed(MARKETPLACE),
+                     style: ButtonStyle(
+                       padding: MaterialStateProperty.all<EdgeInsets>(
+                           const EdgeInsets.all(20)
+                       ),
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(0.0),
+                          ),
+                        ),
+                      ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          'Marketplace'.toUpperCase(),
+                          style: Theme.of(context).textTheme.labelLarge,
+                        ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        const Icon(
+                          Icons.double_arrow,
+                          size: 24.0,
+                          color: Colors.white,
+                        ),
+                      ],
+                    ),
+                  ),
+                )
               ),
             ),
             AnimatedOpacity(

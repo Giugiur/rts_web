@@ -13,3 +13,14 @@ bool isMobile (context) {
 bool isDesktop (context) {
   return GetPlatform.isDesktop;
 }
+
+const BoxDecoration gradientDecoration = BoxDecoration(
+  gradient: LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [
+      Color.fromRGBO(44, 42, 57, 1),
+      Color.fromRGBO(42, 59, 79, 1)
+    ]
+  )
+);

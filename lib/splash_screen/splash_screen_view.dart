@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rts_web/utils/utils.dart';
 import 'splash_screen_controller.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -10,15 +11,16 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  SplashScreenController splashScreenController = Get.put(SplashScreenController());
 
   @override
   Widget build(BuildContext context) {
     return
       GetBuilder<SplashScreenController>(
         init: SplashScreenController(),
-        builder: (controller) =>
+        builder: (splashScreenController) =>
         Container(
-          color: Colors.black,
+          decoration: gradientDecoration,
           child: Image.asset(
             'images/loading.gif',
             height: 50,
