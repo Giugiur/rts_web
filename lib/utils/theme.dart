@@ -3,21 +3,31 @@ import 'package:flutter/material.dart';
 const darkTextTheme = TextTheme(
   bodyLarge: TextStyle(
     color: Colors.white,
-    fontSize: 28,
+    fontSize: 18,
   ),
   bodyMedium: TextStyle(
     color: Colors.white,
-    fontSize: 24,
+    fontSize: 14,
   ),
-  //bodySmall: TextStyle(),
+  bodySmall: TextStyle(
+    color: Colors.white,
+    fontSize: 10,
+  ),
   //displayLarge: TextStyle(),
   //displayMedium: TextStyle(),
   //displaySmall: TextStyle(),
-  //headlineLarge: TextStyle(),
-  headlineMedium: TextStyle(
-    fontSize: 18,
+  headlineLarge: TextStyle(
+    color: Colors.white,
+    fontSize: 28,
   ),
-  //headlineSmall: TextStyle(),
+  headlineMedium: TextStyle(
+    color: Colors.white,
+    fontSize: 24,
+  ),
+  headlineSmall: TextStyle(
+    color: Colors.white,
+    fontSize: 20,
+  ),
   //titleLarge: TextStyle(),
   //titleMedium: TextStyle(),
   //titleSmall: TextStyle(),
@@ -38,9 +48,5 @@ ThemeData darkTheme = ThemeData(
   useMaterial3: true,
   brightness: Brightness.dark,
   primaryColor: Colors.amber,
-  buttonTheme: const ButtonThemeData(
-    buttonColor: Colors.amber,
-    disabledColor: Colors.grey,
-  ),
   textTheme: darkTextTheme
 );

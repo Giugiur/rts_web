@@ -136,7 +136,7 @@ class _HomeIntroSectionState extends State<HomeIntroSection> {
                         'A free-to-play, AAA\n'
                         'RTS game, focused on\n'
                         'macro-management mechanics',
-                        style: Theme.of(context).textTheme.bodyLarge,
+                        style: Theme.of(context).textTheme.headlineLarge,
                       ),
                     )
                 ),

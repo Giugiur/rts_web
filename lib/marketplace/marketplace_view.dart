@@ -17,29 +17,25 @@ class _MarketplaceViewState extends State<MarketplaceView> {
   @override
   Widget build(BuildContext context) {
 
-    return GetBuilder<MarketplaceController>(
-      init: MarketplaceController(),
-      builder: (marketplaceController) =>
-        HomeScaffold(
-          body: Padding(
-            padding: const EdgeInsets.all(50),
-            child: Row(
-              children: [
-                Expanded(
-                  flex: isSmallScreen(context) ? 0 : 25,
-                  child: isSmallScreen(context)
-                    ? Container()
-                    : const MarketplaceFilters(),
-                ),
-                const SizedBox(width: 20,),
-                const Expanded(
-                    flex: 75,
-                    child: MarketplaceGrid()
-                ),
-              ],
+    return HomeScaffold(
+      body: Padding(
+        padding: const EdgeInsets.all(50),
+        child: Row(
+          children: [
+            Expanded(
+              flex: isSmallScreen(context) ? 0 : 25,
+              child: isSmallScreen(context)
+                ? Container()
+                : const MarketplaceFilters(),
             ),
-          ),
+            const SizedBox(width: 20,),
+            const Expanded(
+                flex: 75,
+                child: MarketplaceGrid()
+            ),
+          ],
         ),
+      ),
     );
   }
 }
