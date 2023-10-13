@@ -24,3 +24,18 @@ const BoxDecoration gradientDecoration = BoxDecoration(
     ]
   )
 );
+
+const BoxDecoration circularGradientDecoration = BoxDecoration(
+  borderRadius: BorderRadius.only(
+      topLeft: Radius.circular(15.0),
+      topRight: Radius.circular(15.0)
+  ),
+  gradient: LinearGradient(
+      begin: Alignment.centerLeft,
+      end: Alignment.centerRight,
+      colors: [
+        Color.fromRGBO(44, 42, 57, 1),
+        Color.fromRGBO(42, 59, 79, 1)
+      ]
+  ),
+);

@@ -14,13 +14,22 @@ const darkTextTheme = TextTheme(
   //displayMedium: TextStyle(),
   //displaySmall: TextStyle(),
   //headlineLarge: TextStyle(),
-  //headlineMedium: TextStyle(),
+  headlineMedium: TextStyle(
+    fontSize: 18,
+  ),
   //headlineSmall: TextStyle(),
   //titleLarge: TextStyle(),
   //titleMedium: TextStyle(),
   //titleSmall: TextStyle(),
-  //labelLarge: TextStyle(),
-  //labelMedium: TextStyle(),
+  labelLarge: TextStyle(
+    color: Colors.white,
+    fontSize: 16,
+    letterSpacing: 1,
+  ),
+  labelMedium: TextStyle(
+    color: Colors.white,
+    fontSize: 10,
+  ),
   //labelSmall: TextStyle(),
 );
 

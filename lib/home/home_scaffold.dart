@@ -58,11 +58,13 @@ class _HomeScaffoldState extends State<HomeScaffold> with SingleTickerProviderSt
                   margin: const EdgeInsets.only(top: 20, left: 20),
                   child: InkWell(
                     onTap: _tapIcon,
-                    child: AnimatedIcon(
-                      icon: AnimatedIcons.menu_close,
-                      progress: _animationController,
-                      size: 40,
-                      color: Colors.white,
+                    child: Center(
+                      child: AnimatedIcon(
+                        icon: AnimatedIcons.menu_close,
+                        progress: _animationController,
+                        size: 40,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
