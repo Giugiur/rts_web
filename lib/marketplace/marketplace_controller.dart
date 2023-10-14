@@ -13,6 +13,7 @@ class MarketplaceController extends GetxController {
         imageUrl: 'https://i.imgur.com/FfE62PM.png',
         rarity: Rarity.Rare,
         race: Race.Eldmen,
+        type: Type.Hero,
       ),
       MarketplaceListing(
         id: '1',
@@ -20,6 +21,7 @@ class MarketplaceController extends GetxController {
         imageUrl: 'https://i.imgur.com/gWrm7pF.png',
         rarity: Rarity.Common,
         race: Race.Eldmen,
+        type: Type.Unit,
       ),
       MarketplaceListing(
         id: '2',
@@ -27,6 +29,7 @@ class MarketplaceController extends GetxController {
         imageUrl: 'https://i.imgur.com/FpNPHFD.png',
         rarity: Rarity.Uncommon,
         race: Race.Eldmen,
+        type: Type.Unit,
       ),
       MarketplaceListing(
         id: '3',
@@ -34,6 +37,7 @@ class MarketplaceController extends GetxController {
         imageUrl: 'https://i.imgur.com/E8QChK4.png',
         rarity: Rarity.Rare,
         race: Race.Velhan,
+        type: Type.Hero,
       ),
       MarketplaceListing(
         id: '4',
@@ -41,6 +45,7 @@ class MarketplaceController extends GetxController {
         imageUrl: 'https://i.imgur.com/wuXeXZX.png',
         rarity: Rarity.Common,
         race: Race.Velhan,
+        type: Type.Unit,
       ),
       MarketplaceListing(
         id: '5',
@@ -48,6 +53,7 @@ class MarketplaceController extends GetxController {
         imageUrl: 'https://i.imgur.com/h5QUIHe.png',
         rarity: Rarity.Uncommon,
         race: Race.Velhan,
+        type: Type.Unit,
       ),
       MarketplaceListing(
         id: '6',
@@ -55,6 +61,7 @@ class MarketplaceController extends GetxController {
         imageUrl: 'https://i.imgur.com/YgvASXT.png',
         rarity: Rarity.Rare,
         race: Race.Keenfolk,
+        type: Type.Hero,
       ),
       MarketplaceListing(
         id: '7',
@@ -62,6 +69,7 @@ class MarketplaceController extends GetxController {
         imageUrl: 'https://i.imgur.com/QRHQ2kM.png',
         rarity: Rarity.Common,
         race: Race.Keenfolk,
+        type: Type.Unit,
       ),
       MarketplaceListing(
         id: '8',
@@ -69,6 +77,7 @@ class MarketplaceController extends GetxController {
         imageUrl: 'https://i.imgur.com/4Lp8gIz.png',
         rarity: Rarity.Uncommon,
         race: Race.Keenfolk,
+        type: Type.Unit,
       ),
     ];
   }
@@ -84,6 +93,12 @@ class MarketplaceController extends GetxController {
     Rarity.Rare: true,
     Rarity.Mythic: true,
     Rarity.Fabled: true,
+    Type.Hero: true,
+    Type.Unit: true,
+    Type.Item: true,
+    Type.Skin: true,
+    Type.Pass: true,
+    Type.Pack: true,
   }.obs;
   final RxMap<dynamic, dynamic> _filterObj = RxMap<dynamic, dynamic>();
 
@@ -114,50 +129,23 @@ class MarketplaceController extends GetxController {
           return true;
         }
       }
-      switch (marketplaceListing.race) {
-        case Race.Eldmen:
-          {
-            return !_filterObj[Race.Eldmen];
-          }
-        case Race.Keenfolk:
-          {
-            return !_filterObj[Race.Keenfolk];
-          }
-        case Race.Velhan:
-          {
-            return !_filterObj[Race.Velhan];
-          }
-        case Race.Gorks:
-          {
-            return !_filterObj[Race.Gorks];
-          }
-        case Race.Shadowlings:
-          {
-            return !_filterObj[Race.Shadowlings];
-          }
-      }
 
-      switch (marketplaceListing.rarity) {
-        case Rarity.Common:
-          {
-            return !_filterObj[Rarity.Common];
+      for(dynamic filter in _filterObj.keys) {
+        if (filter is Race) {
+          if (!_filterObj[filter] && filter == marketplaceListing.race) {
+            return true;
           }
-        case Rarity.Uncommon:
-          {
-            return !_filterObj[Rarity.Uncommon];
+        }
+        if (filter is Rarity) {
+          if (!_filterObj[filter] && filter == marketplaceListing.rarity) {
+            return true;
           }
-        case Rarity.Rare:
-          {
-            return !_filterObj[Rarity.Rare];
+        }
+        if (filter is Type) {
+          if (!_filterObj[filter] && filter == marketplaceListing.type) {
+            return true;
           }
-        case Rarity.Mythic:
-          {
-            return !_filterObj[Rarity.Mythic];
-          }
-        case Rarity.Fabled:
-          {
-            return !_filterObj[Rarity.Fabled];
-          }
+        }
       }
       return false;
     });

@@ -18,6 +18,7 @@ class _MarketplaceFiltersState extends State<MarketplaceFilters> {
 
   void _clearFilters() {
    _searchController.clear();
+   marketplaceController.clearFilters();
   }
 
   @override
@@ -208,6 +209,118 @@ class _MarketplaceFiltersState extends State<MarketplaceFilters> {
                 flex: 50,
                 child: Container(),
               )
+            ],
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Text(
+            'Type',
+            style: Theme.of(context).textTheme.headlineSmall,
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Row(
+            children: [
+              Expanded(
+                flex: 50,
+                child: Obx(() =>
+                  CheckboxListTile(
+                    title: Text(
+                      'Unit',
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                    activeColor: Theme.of(context).focusColor,
+                    checkColor: Colors.white,
+                    value: marketplaceController.filterObj[Type.Unit],
+                    onChanged: (newValue) => marketplaceController.updateFilter(Type.Unit, newValue!),
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 50,
+                child: Obx(() =>
+                  CheckboxListTile(
+                    title: Text(
+                      'Hero',
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                    activeColor: Theme.of(context).focusColor,
+                    checkColor: Colors.white,
+                    value: marketplaceController.filterObj[Type.Hero],
+                    onChanged: (newValue) => marketplaceController.updateFilter(Type.Hero, newValue!),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Expanded(
+                flex: 50,
+                child: Obx(() =>
+                  CheckboxListTile(
+                    title: Text(
+                      'Item',
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                    activeColor: Theme.of(context).focusColor,
+                    checkColor: Colors.white,
+                    value: marketplaceController.filterObj[Type.Item],
+                    onChanged: (newValue) => marketplaceController.updateFilter(Type.Item, newValue!),
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 50,
+                child: Obx(() =>
+                  CheckboxListTile(
+                    title: Text(
+                      'Skin',
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                    activeColor: Theme.of(context).focusColor,
+                    checkColor: Colors.white,
+                    value: marketplaceController.filterObj[Type.Skin],
+                    onChanged: (newValue) => marketplaceController.updateFilter(Type.Skin, newValue!),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Expanded(
+                flex: 50,
+                child: Obx(() =>
+                  CheckboxListTile(
+                    title: Text(
+                      'Pass',
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                    activeColor: Theme.of(context).focusColor,
+                    checkColor: Colors.white,
+                    value: marketplaceController.filterObj[Type.Pass],
+                    onChanged: (newValue) => marketplaceController.updateFilter(Type.Pass, newValue!),
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 50,
+                child: Obx(() =>
+                  CheckboxListTile(
+                    title: Text(
+                      'Pack',
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                    activeColor: Theme.of(context).focusColor,
+                    checkColor: Colors.white,
+                    value: marketplaceController.filterObj[Type.Pack],
+                    onChanged: (newValue) => marketplaceController.updateFilter(Type.Pack, newValue!),
+                  ),
+                ),
+              ),
             ],
           ),
           const SizedBox(
