@@ -58,7 +58,7 @@ class _ICardState extends State<ICard> {
   
   backgroundImage() {
     return AnimatedPositioned(
-      duration: Duration (milliseconds: 1000),
+      duration: const Duration (milliseconds: 1000),
       curve: Curves.easeOutCubic,
       top: isHover ? -40 + mousePosition.dy: 0,
       left: isHover ? -50 + mousePosition.dx : -100,

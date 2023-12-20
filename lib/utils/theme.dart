@@ -1,28 +1,37 @@
 import 'package:flutter/material.dart';
 
-const darkTextTheme = TextTheme(
-  bodyLarge: TextStyle(
+TextTheme darkTextTheme = TextTheme(
+  bodyLarge: const TextStyle(
     color: Colors.white,
     fontSize: 18,
   ),
-  bodyMedium: TextStyle(
+  bodyMedium: const TextStyle(
     color: Colors.white,
-    fontSize: 14,
+    fontSize: 13,
   ),
-  bodySmall: TextStyle(
+  bodySmall: const TextStyle(
     color: Colors.white,
     fontSize: 10,
   ),
-  //displayLarge: TextStyle(),
-  //displayMedium: TextStyle(),
-  //displaySmall: TextStyle(),
+  displayLarge: TextStyle(
+    color: Color.fromRGBO(227, 186, 70, 1),
+    fontSize: 18,
+  ),
+  displayMedium: TextStyle(
+    color: Color.fromRGBO(227, 186, 70, 1),
+    fontSize: 13,
+  ),
+  displaySmall: TextStyle(
+    color: Color.fromRGBO(227, 186, 70, 1),
+    fontSize: 10,
+  ),
   headlineLarge: TextStyle(
     color: Colors.white,
-    fontSize: 28,
+    fontSize: 32,
   ),
   headlineMedium: TextStyle(
     color: Colors.white,
-    fontSize: 24,
+    fontSize: 26,
   ),
   headlineSmall: TextStyle(
     color: Colors.white,
@@ -45,8 +54,20 @@ const darkTextTheme = TextTheme(
 
 ThemeData darkTheme = ThemeData(
   fontFamily: 'Ubuntu',
+  colorScheme: const ColorScheme(
+    primary: Color.fromRGBO(227, 186, 70, 1),
+    secondary: Colors.red,
+    brightness: Brightness.dark,
+    onPrimary: Color.fromRGBO(227, 186, 70, 1),
+    onSecondary: Colors.red,
+    error: Colors.red,
+    onError: Colors.red,
+    background: Colors.black,
+    onBackground: Colors.white,
+    surface: Colors.white,
+    onSurface: Colors.white,
+  ),
   useMaterial3: true,
   brightness: Brightness.dark,
-  primaryColor: Colors.amber,
   textTheme: darkTextTheme
 );

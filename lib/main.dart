@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rts_web/marketplace/marketplace_view.dart';
+import 'package:get_storage/get_storage.dart';
+import 'marketplace/marketplace_view.dart';
+import 'auth/auth_view.dart';
 import 'home/home_view.dart';
 import 'splash_screen/splash_screen_view.dart';
 import 'utils/constants.dart';
 import 'utils/theme.dart';
-import 'package:get_storage/get_storage.dart';
+
 
 Future<void> main() async {
   await GetStorage.init();
@@ -25,6 +27,7 @@ class RtsWebApp extends StatelessWidget {
       getPages: [
         GetPage(name: HOME, page: () => const HomeView(), transition: Transition.fadeIn),
         GetPage(name: MARKETPLACE, page: () => const MarketplaceView(), transition: Transition.fadeIn),
+        GetPage(name: AUTH, page: () => const AuthView(), transition: Transition.fadeIn),
       ]
     );
   }

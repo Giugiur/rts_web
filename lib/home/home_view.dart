@@ -43,7 +43,7 @@ class _HomeViewState extends State<HomeView> {
                     Container(
                       width: deviceSize.width,
                       height: deviceSize.height,
-                      color: Colors.blue,
+                      color: Colors.black,
                     ),
                   ],
                 ),
