@@ -18,7 +18,7 @@ class RtsWebApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Wartorn',
+      title: 'Timefront',
       debugShowCheckedModeBanner: false,
       theme: darkTheme,
       home: const SplashScreen(),

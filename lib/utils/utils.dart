@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../marketplace/marketplace_listing_model.dart';
+
 bool isSmallScreen (context) {
   var screenSize = MediaQuery.of(context).size;
   return screenSize.width < 1250;
@@ -39,3 +41,51 @@ const BoxDecoration circularGradientDecoration = BoxDecoration(
       ]
   ),
 );
+
+Color getRarityColor(Rarity rarity) {
+  Color color = Colors.white;
+  switch (rarity) {
+    case Rarity.Common:
+      color = Colors.white;
+      break;
+    case Rarity.Uncommon:
+      color = Colors.greenAccent;
+      break;
+    case Rarity.Rare:
+      color = Colors.lightBlueAccent;
+      break;
+    case Rarity.Mythic:
+      color = Colors.purpleAccent;
+      break;
+    case Rarity.Fabled:
+      color = Colors.orange;
+      break;
+    default:
+      color = Colors.white;
+  }
+  return color;
+}
+
+String getRarityName(Rarity rarity) {
+  String text = 'Common';
+  switch (rarity) {
+    case Rarity.Common:
+      text = 'Common';
+      break;
+    case Rarity.Uncommon:
+      text = 'Uncommon';
+      break;
+    case Rarity.Rare:
+      text = 'Rare';
+      break;
+    case Rarity.Mythic:
+      text = 'Mythic';
+      break;
+    case Rarity.Fabled:
+      text = 'Fabled';
+      break;
+    default:
+      text = 'Common';
+  }
+  return text;
+}

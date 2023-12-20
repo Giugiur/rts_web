@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../marketplace/marketplace_filters.dart';
 import 'home_controller.dart';
 import '../utils/utils.dart';
 
@@ -74,6 +75,22 @@ class _HomeScaffoldState extends State<HomeScaffold> with SingleTickerProviderSt
             ],
           ),
         ),
+        floatingActionButton: isSmallScreen(context) && Get.currentRoute == '/marketplace' ?
+        Container(
+          margin: const EdgeInsets.all(20),
+          child: FloatingActionButton(
+              backgroundColor: Colors.white,
+              onPressed: () {
+                Get.bottomSheet(
+                  const MarketplaceFilters(),
+                );
+              },
+              child: const Icon(
+                Icons.tune,
+                color: Colors.black,
+              )
+          ),
+        ) : Container(),
       ),
     );
   }

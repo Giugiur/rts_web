@@ -1,15 +1,21 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'marketplace_item.dart';
 import 'marketplace_listing_model.dart';
 
 class MarketplaceController extends GetxController {
 
   RxList displayList = [].obs;
+  bool _isReady = false;
+
+  get isReady => _isReady;
+  get filterObj => _filterObj;
 
   //ToDo: Delete this when testing is over
   List<MarketplaceListing> initList() {
     return [
       MarketplaceListing(
-        id: '0', name: 'Quintus, The Ironbull',
+        id: '0', name: 'Quintus',
         imageUrl: 'https://i.imgur.com/FfE62PM.png',
         rarity: Rarity.Rare,
         race: Race.Eldmen,
@@ -27,17 +33,17 @@ class MarketplaceController extends GetxController {
         id: '2',
         name: 'Lightbearer',
         imageUrl: 'https://i.imgur.com/FpNPHFD.png',
-        rarity: Rarity.Uncommon,
+        rarity: Rarity.Mythic,
         race: Race.Eldmen,
         type: Type.Unit,
       ),
       MarketplaceListing(
         id: '3',
-        name: 'Selzedwyn, Royal Assassin',
+        name: 'Alchemist',
         imageUrl: 'https://i.imgur.com/E8QChK4.png',
-        rarity: Rarity.Rare,
-        race: Race.Velhan,
-        type: Type.Hero,
+        rarity: Rarity.Fabled,
+        race: Race.Keenfolk,
+        type: Type.Unit,
       ),
       MarketplaceListing(
         id: '4',
@@ -49,7 +55,7 @@ class MarketplaceController extends GetxController {
       ),
       MarketplaceListing(
         id: '5',
-        name: 'Treeguard',
+        name: 'Treewarden',
         imageUrl: 'https://i.imgur.com/h5QUIHe.png',
         rarity: Rarity.Uncommon,
         race: Race.Velhan,
@@ -57,7 +63,7 @@ class MarketplaceController extends GetxController {
       ),
       MarketplaceListing(
         id: '6',
-        name: 'Ukbar, Crowned Prince',
+        name: 'Ukbar',
         imageUrl: 'https://i.imgur.com/YgvASXT.png',
         rarity: Rarity.Rare,
         race: Race.Keenfolk,
@@ -102,13 +108,20 @@ class MarketplaceController extends GetxController {
   }.obs;
   final RxMap<dynamic, dynamic> _filterObj = RxMap<dynamic, dynamic>();
 
-  get filterObj => _filterObj;
-
   @override
   void onInit() {
     displayList.value = RxList.from(initList());
     clearFilters();
+    _isReady = true;
     super.onInit();
+  }
+
+  List<Widget> getMarketplaceItems() {
+    List<MarketplaceItem> ret = [];
+    for (int i = 0; i < displayList.length; i++) {
+      ret.add(MarketplaceItem(displayList[i]));
+    }
+    return ret;
   }
 
   void clearFilters() {
@@ -122,6 +135,7 @@ class MarketplaceController extends GetxController {
   }
 
   void runFilters() {
+    displayList.value = [];
     displayList.value = RxList.from(initList());
     displayList.removeWhere((marketplaceListing) {
       if (_filterObj['searchFilter'] != '') {
@@ -147,8 +161,9 @@ class MarketplaceController extends GetxController {
           }
         }
       }
+      update();
+
       return false;
     });
-
   }
 }
