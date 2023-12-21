@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../utils/i_card.dart';
+import '../widgets/i_card.dart';
 import 'marketplace_listing_model.dart';
 import '../utils/custom_box_shadow.dart';
 import 'marketplace_rarity_tag.dart';

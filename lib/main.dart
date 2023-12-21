@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:rts_web/auth/auth_forgotten.dart';
 import 'marketplace/marketplace_view.dart';
 import 'auth/auth_view.dart';
 import 'home/home_view.dart';
@@ -28,6 +29,7 @@ class RtsWebApp extends StatelessWidget {
         GetPage(name: HOME, page: () => const HomeView(), transition: Transition.fadeIn),
         GetPage(name: MARKETPLACE, page: () => const MarketplaceView(), transition: Transition.fadeIn),
         GetPage(name: AUTH, page: () => const AuthView(), transition: Transition.fadeIn),
+        GetPage(name: FORGOTTEN, page: () => const AuthForgotten(), transition: Transition.fadeIn),
       ]
     );
   }

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rts_web/home/home_scaffold.dart';
+import 'package:rts_web/utils/constants.dart';
 import 'auth_controller.dart';
 import '../utils/utils.dart';
+import '../utils/constants.dart';
 
 class AuthView extends StatelessWidget {
   const AuthView({super.key});
@@ -27,7 +29,7 @@ class AuthView extends StatelessWidget {
             child: Container(
               child: Center(
                 child: SizedBox(
-                  width: 525,
+                  width: FORM_WIDTH,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -62,6 +64,20 @@ class AuthView extends StatelessWidget {
                         obscureText: true,
                         onChanged: (value) => authController.changePassword(value),
                       ),
+                      authController.isOnSignUpMode ? const SizedBox(height: 20,) :
+                      SizedBox(
+                        width: double.infinity,
+                        child: Align(
+                          alignment: Alignment.topRight,
+                          child: TextButton(
+                            onPressed: () => Get.toNamed(FORGOTTEN),
+                            child: Text(
+                              authController.isOnSignUpMode ? '' : 'Forgot Password?',
+                              style: Theme.of(context).textTheme.displayMedium,
+                            ),
+                          )
+                        ),
+                      ),
                       authController.passwordIsTooWeak ? Text(
                         'Password is too weak',
                         style: TextStyle(
@@ -80,9 +96,8 @@ class AuthView extends StatelessWidget {
                           color: Theme.of(context).colorScheme.error,
                         ),
                       ) : Container(),
-                      const SizedBox(height: 20),
                       authController.signingUp ? Center(child: const CircularProgressIndicator()) : OutlinedButton(
-                        onPressed: () => authController.createUser(),
+                        onPressed: () => authController.isOnSignUpMode ? authController.createUser() : authController.signInUser(),
                         style: ButtonStyle(
                           padding: MaterialStateProperty.all<EdgeInsets>(
                               const EdgeInsets.all(20)
