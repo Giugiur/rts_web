@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rts_web/auth/auth_controller.dart';
+import 'package:rts_web/auth/auth_dropdown_menu.dart';
 import '../marketplace/marketplace_filters.dart';
+import '../utils/constants.dart';
 import 'home_controller.dart';
 import '../utils/utils.dart';
 
@@ -16,6 +19,7 @@ class HomeScaffold extends StatefulWidget {
 class _HomeScaffoldState extends State<HomeScaffold> with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   bool iconTapped = false;
+  final authController = Get.put(AuthController());
 
   @override
   void initState() {
@@ -55,15 +59,15 @@ class _HomeScaffoldState extends State<HomeScaffold> with SingleTickerProviderSt
                 ),
               ),
               AppBar(
-                leading: Container(
-                  margin: const EdgeInsets.only(top: 20, left: 20),
+                leading: Padding(
+                  padding: const EdgeInsets.only(top: 15, left: 15),
                   child: InkWell(
                     onTap: _tapIcon,
                     child: Center(
                       child: AnimatedIcon(
                         icon: AnimatedIcons.menu_close,
                         progress: _animationController,
-                        size: 40,
+                        size: 36,
                         color: Colors.white,
                       ),
                     ),
@@ -71,6 +75,21 @@ class _HomeScaffoldState extends State<HomeScaffold> with SingleTickerProviderSt
                 ),
                 elevation: 0,
                 backgroundColor: Colors.transparent,
+                actions: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15, right: 15),
+                    child: Obx(() =>
+                      authController.isUserSignedIn.value ? AuthDropdownMenu() :
+                      IconButton(
+                        icon: const Icon(
+                          Icons.login,
+                          size: 32,
+                        ),
+                        onPressed: () => Get.toNamed(AUTH),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

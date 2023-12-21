@@ -1,7 +1,10 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:rts_web/auth/auth_forgotten.dart';
+import 'package:rts_web/tracking/firebase_options.dart';
+import 'inventory/inventory_view.dart';
 import 'marketplace/marketplace_view.dart';
 import 'auth/auth_view.dart';
 import 'home/home_view.dart';
@@ -12,6 +15,10 @@ import 'utils/theme.dart';
 
 Future<void> main() async {
   await GetStorage.init();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const RtsWebApp());
 }
 
@@ -30,6 +37,7 @@ class RtsWebApp extends StatelessWidget {
         GetPage(name: MARKETPLACE, page: () => const MarketplaceView(), transition: Transition.fadeIn),
         GetPage(name: AUTH, page: () => const AuthView(), transition: Transition.fadeIn),
         GetPage(name: FORGOTTEN, page: () => const AuthForgotten(), transition: Transition.fadeIn),
+        GetPage(name: INVENTORY, page: () => const InventoryView(), transition: Transition.fadeIn),
       ]
     );
   }

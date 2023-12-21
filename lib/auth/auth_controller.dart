@@ -14,6 +14,7 @@ class AuthController extends GetxController {
   bool _emptyFields = false;
   bool _isOnSignUpMode = true;
   bool _sendingForgottenEmail = false;
+  RxBool _isUserSignedIn = false.obs;
 
   get email => _email;
   get password => _password;
@@ -24,16 +25,18 @@ class AuthController extends GetxController {
   get isOnSignUpMode => _isOnSignUpMode;
   get forgottenEmail => _forgottenEmail;
   get sendingForgottenEmail => _sendingForgottenEmail;
+  get isUserSignedIn => _isUserSignedIn;
 
   @override
   void onInit() {
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
       if (user == null) {
-        print('User is currently signed out!');
+        _isUserSignedIn.value = false;
       } else {
-        print('User is signed in!');
+        _isUserSignedIn.value = true;
       }
     });
+    update();
     super.onInit();
   }
 
@@ -53,6 +56,7 @@ class AuthController extends GetxController {
         ).then((value) {
           signInUser();
           redirectTo(MARKETPLACE);
+          createSnackbar('success', "Welcome to Timefront!");
         });
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
@@ -74,13 +78,21 @@ class AuthController extends GetxController {
         email: _email,
         password: _password
       ).then((value) {
-        createSnackbar('success', "Signed in!");
+        Get.toNamed(INVENTORY);
+        createSnackbar('success', "Welcome back!");
       });
     } on FirebaseAuthException catch (e) {
+      print(e);
       if (e.code == 'user-not-found' || e.code == 'wrong-password') {
         createSnackbar('error', "Email and password provided do not match");
+      } else {
+        createSnackbar('error', e.message.toString());
       }
     }
+  }
+
+  void signOut() async {
+    await FirebaseAuth.instance.signOut();
   }
 
   void resetPassword() async {

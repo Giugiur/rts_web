@@ -88,46 +88,6 @@ class _HomeIntroSectionState extends State<HomeIntroSection> {
               opacity: homeController.scrolled ? 1.0 : 0.0,
               duration: const Duration(milliseconds: 500),
               child: Align(
-                alignment: Alignment.topRight,
-                child: Padding(
-                  padding: const EdgeInsets.all(introPadding),
-                  child: OutlinedButton(
-                    onPressed: () => Get.toNamed(AUTH),
-                    style: ButtonStyle(
-                      padding: MaterialStateProperty.all<EdgeInsets>(
-                          const EdgeInsets.all(20)
-                      ),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(0.0),
-                        ),
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          'Sign up'.toUpperCase(),
-                          style: Theme.of(context).textTheme.labelLarge,
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        const Icon(
-                          Icons.person_2_outlined,
-                          size: 24.0,
-                          color: Colors.white,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            AnimatedOpacity(
-              opacity: homeController.scrolled ? 1.0 : 0.0,
-              duration: const Duration(milliseconds: 500),
-              child: Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 50.0),

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-TextTheme darkTextTheme = TextTheme(
-  bodyLarge: const TextStyle(
+TextTheme darkTextTheme = const TextTheme(
+  bodyLarge: TextStyle(
     color: Colors.white,
     fontSize: 18,
   ),
-  bodyMedium: const TextStyle(
+  bodyMedium: TextStyle(
     color: Colors.white,
     fontSize: 13,
   ),
-  bodySmall: const TextStyle(
+  bodySmall: TextStyle(
     color: Colors.white,
     fontSize: 10,
   ),
@@ -64,7 +64,7 @@ ThemeData darkTheme = ThemeData(
     onError: Colors.red,
     background: Colors.black,
     onBackground: Colors.white,
-    surface: Colors.white,
+    surface: Colors.transparent,
     onSurface: Colors.white,
   ),
   useMaterial3: true,
