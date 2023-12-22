@@ -30,7 +30,7 @@ class MarketplaceView extends StatelessWidget {
                 flex: 75,
                 child: marketplaceController.isReady ?
                   const MarketplaceGrid() :
-                  const CircularProgressIndicator()
+                  const Center(child: CircularProgressIndicator())
               ),
             ],
           ),

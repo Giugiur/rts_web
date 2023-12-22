@@ -47,7 +47,7 @@ TextTheme darkTextTheme = const TextTheme(
   ),
   labelMedium: TextStyle(
     color: Colors.white,
-    fontSize: 10,
+    fontSize: 12,
   ),
   //labelSmall: TextStyle(),
 );

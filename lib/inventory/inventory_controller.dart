@@ -17,30 +17,33 @@ class InventoryController extends GetxController {
 
   @override
   void onInit() async{
-    // if (authController.isUserSignedIn.value) {
-    //   //TODO: Handle more than 1 page or 50 items
-    //   var assets = await api.getUserAssets(authController.authUID);
-    //   var decoded = json.decode(assets.body);
-    //   displayList.value = decoded['data'];
-    // }
+    if (authController.isUserSignedIn.value) {
+      //TODO: Handle more than 1 page or 50 items
+      getUserAssets();
+    }
     super.onInit();
   }
 
   void getUserAssets() async {
-    if (authController.isUserSignedIn.value) {
       //TODO: Handle more than 1 page or 50 items
-      // var assets = await api.getUserAssets(authController.authUID);
-      // var decoded = json.decode(assets.body);
+      var assets = await api.getUserAssets(authController.authUID);
+      var decoded = json.decode(assets.body);
+      var nftList = await nftsController.getNFTs();
       // extract ID,
       // match ID with NFT data
       // display only those NFT
       // print(decoded['data']);
-      // for (var item in decoded['data']) {
-      //   displayList.add(nftsController.buildNFTModel(item));
-      // }
-      displayList = await nftsController.getNFTs();
+      nftList.removeWhere((nft) {
+        bool found = false; int i = 0;
+        while(i< decoded['data'].length) {
+          if (decoded['data'][i]['id'] == nft.id) {
+            found = true;
+          }
+          i++;
+        }
+        return !found;
+      });
+      displayList = nftList;
       update();
     }
-
-  }
 }

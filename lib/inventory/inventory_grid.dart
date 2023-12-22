@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:rts_web/NFTs/NFTs_item.dart';
 import 'package:rts_web/inventory/inventory_item.dart';
 import 'package:rts_web/utils/constants.dart';
 
@@ -39,7 +40,7 @@ class InventoryGrid extends StatelessWidget {
           mainAxisSpacing: 20,
         ),
         itemCount: inventoryController.displayList.length,
-        itemBuilder: (ctx, index) => InventoryItem(inventoryController.displayList[index])
+        itemBuilder: (ctx, index) => NftItem(inventoryController.displayList[index])
     );
   }
 }

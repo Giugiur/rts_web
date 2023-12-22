@@ -124,23 +124,22 @@ class _MarketplaceFiltersState extends State<MarketplaceFilters> {
             children: [
               Expanded(
                 flex: 50,
-                child: Obx(() =>
-                CheckboxListTile(
-                  title: Text(
-                    'Eldmen',
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                  activeColor: Theme.of(context).focusColor,
-                  checkColor: Colors.white,
-                  value: marketplaceController.filterObj[Race.Eldmen],
-                  onChanged: (newValue) => marketplaceController.updateFilter(Race.Eldmen, newValue!),
+                child:
+                Obx(() => CheckboxListTile(
+                    title: Text(
+                      'Eldmen',
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                    activeColor: Theme.of(context).focusColor,
+                    checkColor: Colors.white,
+                    value: marketplaceController.filterObj[Race.Eldmen],
+                    onChanged: (newValue) => marketplaceController.updateFilter(Race.Eldmen, newValue!),
                   ),
                 ),
-               ),
+              ),
               Expanded(
                 flex: 50,
-                child: Obx(() =>
-                    CheckboxListTile(
+                child: Obx(() => CheckboxListTile(
                       title: Text(
                         'Keenfolk',
                         style: Theme.of(context).textTheme.bodyMedium,

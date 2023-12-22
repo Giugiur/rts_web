@@ -70,7 +70,7 @@ class _ICardState extends State<ICard> {
         decoration: BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.cover,
-            image: AssetImage('images/${widget.nftModel.name}.png')
+            image: NetworkImage(widget.nftModel.imageUrl)
           )
         ),
       ),

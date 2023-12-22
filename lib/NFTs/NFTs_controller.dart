@@ -9,7 +9,6 @@ class NFTsController extends GetxController {
   List<NFTModel> get NFTList => _NFTsList;
 
   void onInit() {
-    getNFTs();
     super.onInit();
   }
 
@@ -20,6 +19,7 @@ class NFTsController extends GetxController {
         _NFTsList.add(buildNFTModel(item));
       }
     }
+    update();
     return _NFTsList;
   }
 

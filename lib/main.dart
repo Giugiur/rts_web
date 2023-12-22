@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:rts_web/auth/auth_forgotten.dart';
+import 'package:rts_web/marketplace/marketplace_detail.dart';
 import 'package:rts_web/tracking/firebase_options.dart';
 import 'API/API.dart';
 import 'inventory/inventory_view.dart';
@@ -38,6 +39,7 @@ class RtsWebApp extends StatelessWidget {
       getPages: [
         GetPage(name: HOME, page: () => const HomeView(), transition: Transition.fadeIn),
         GetPage(name: MARKETPLACE, page: () => const MarketplaceView(), transition: Transition.fadeIn),
+        GetPage(name: '$MARKETPLACE/:id', page: () => const MarketplaceDetail(), transition: Transition.fadeIn),
         GetPage(name: AUTH, page: () => const AuthView(), transition: Transition.fadeIn),
         GetPage(name: FORGOTTEN, page: () => const AuthForgotten(), transition: Transition.fadeIn),
         GetPage(name: INVENTORY, page: () => InventoryView(), transition: Transition.fadeIn),

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rts_web/utils/constants.dart';
 import '../utils/utils.dart';
 import 'marketplace_controller.dart';
-import 'marketplace_item.dart';
+import '../NFTs/NFTs_item.dart';
 
 class MarketplaceGrid extends StatelessWidget {
   const MarketplaceGrid({super.key});
@@ -27,7 +28,10 @@ class MarketplaceGrid extends StatelessWidget {
             mainAxisSpacing: 20,
           ),
           itemCount: marketplaceController.displayList.length,
-          itemBuilder: (ctx, index) => MarketplaceItem(marketplaceController.displayList[index])
+          itemBuilder: (ctx, index) => InkWell(
+            child: NftItem(marketplaceController.displayList[index]),
+            onTap: () => Get.toNamed('$MARKETPLACE/${marketplaceController.displayList[index].id}'),
+          )
       ),
     );
   }

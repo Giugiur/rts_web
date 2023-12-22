@@ -19,13 +19,29 @@ class InventoryView extends StatelessWidget {
         body: Obx(() =>
           Padding(
             padding: const EdgeInsets.all(60),
-            child: authController.isUserSignedIn.value ?
-              InventoryGrid() :
-              Container(
-                child: Center(
-                  child: Text('You must be signed in to see your inventory.'),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Expanded(
+                  flex: 10,
+                  child: Text(
+                    'Your Inventory',
+                    style: Theme.of(context).textTheme.headlineLarge,
+                  ),
                 ),
-              ),
+                Expanded(
+                  flex: 90,
+                  child: authController.isUserSignedIn.value ?
+                  InventoryGrid() :
+                  const Center(
+                    child: Text('You must be signed in to see your inventory.'),
+                  ),
+                ),
+
+              ],
+            )
+
           ),
         )
       ),
