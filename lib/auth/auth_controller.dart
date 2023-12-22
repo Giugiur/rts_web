@@ -3,14 +3,18 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:rts_web/utils/constants.dart';
 import 'package:rts_web/widgets/custom_snackbar.dart';
 
+import '../API/API.dart';
+
 class AuthController extends GetxController {
 
   String _email = "";
   String _password = "";
   String _forgottenEmail = "";
+  String _authUID = "";
   bool _passwordIsTooWeak = false;
   bool _emailAlreadyInUse = false;
   bool _signingUp = false;
+  bool _signingIn = false;
   bool _emptyFields = false;
   bool _isOnSignUpMode = true;
   bool _sendingForgottenEmail = false;
@@ -18,14 +22,18 @@ class AuthController extends GetxController {
 
   get email => _email;
   get password => _password;
+  get forgottenEmail => _forgottenEmail;
+  get authUID => _authUID;
   get passwordIsTooWeak => _passwordIsTooWeak;
   get emailAlreadyInUse => _emailAlreadyInUse;
   get signingUp => _signingUp;
+  get signingIn => _signingIn;
   get emptyFields => _emptyFields;
   get isOnSignUpMode => _isOnSignUpMode;
-  get forgottenEmail => _forgottenEmail;
   get sendingForgottenEmail => _sendingForgottenEmail;
   get isUserSignedIn => _isUserSignedIn;
+
+  var api = API();
 
   @override
   void onInit() {
@@ -54,9 +62,8 @@ class AuthController extends GetxController {
           email: _email,
           password: _password,
         ).then((value) {
+          api.registerUser(_email, value.user!.uid);
           signInUser();
-          redirectTo(MARKETPLACE);
-          createSnackbar('success', "Welcome to Timefront!");
         });
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
@@ -73,13 +80,18 @@ class AuthController extends GetxController {
   }
 
   void signInUser() async {
+    _authUID = '';
+    _signingIn = true;
+    update();
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: _email,
         password: _password
       ).then((value) {
+        _authUID = value.user!.uid;
+        update();
         Get.toNamed(INVENTORY);
-        createSnackbar('success', "Welcome back!");
+        createSnackbar('success', "Welcome to Timefront!");
       });
     } on FirebaseAuthException catch (e) {
       print(e);
@@ -89,6 +101,12 @@ class AuthController extends GetxController {
         createSnackbar('error', e.message.toString());
       }
     }
+    _signingIn = false;
+    update();
+  }
+
+  void getUserDetails(String uid) async {
+    api.getUserDetails(uid);
   }
 
   void signOut() async {

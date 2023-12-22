@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import '../widgets/i_card.dart';
-import 'marketplace_listing_model.dart';
+import '../NFTs/NFTModel.dart';
 import '../utils/custom_box_shadow.dart';
 import 'marketplace_rarity_tag.dart';
 
 class MarketplaceItem extends StatelessWidget {
-  final MarketplaceListing marketplaceListing;
-  const MarketplaceItem(this.marketplaceListing, {super.key});
+  final NFTModel nftModel;
+  const MarketplaceItem(this.nftModel, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class MarketplaceItem extends StatelessWidget {
                         child: SizedBox(
                           width: 600,
                           height: 800,
-                          child: ICard(marketplaceListing)
+                          child: ICard(nftModel)
                         ),
                       ),
                     )
@@ -53,7 +53,7 @@ class MarketplaceItem extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.only(left: 15),
                             child: Text(
-                              marketplaceListing.name,
+                              nftModel.name,
                               style: Theme.of(context).textTheme.labelLarge,
                             ),
                           ),
@@ -61,7 +61,7 @@ class MarketplaceItem extends StatelessWidget {
                         const SizedBox(width: 20,),
                         Align(
                           alignment: Alignment.centerRight,
-                          child: MarketplaceRarityTag(marketplaceListing.rarity)
+                          child: MarketplaceRarityTag(nftModel.rarity)
                         )
                       ]
                     ),

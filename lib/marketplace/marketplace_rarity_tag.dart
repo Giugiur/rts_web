@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rts_web/utils/utils.dart';
-import 'marketplace_listing_model.dart';
+import '../NFTs/NFTModel.dart';
 
 class MarketplaceRarityTag extends StatelessWidget {
   final Rarity rarity;

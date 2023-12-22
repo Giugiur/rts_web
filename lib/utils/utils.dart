@@ -1,7 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../marketplace/marketplace_listing_model.dart';
+import '../NFTs/NFTModel.dart';
 
 bool isSmallScreen (context) {
   var screenSize = MediaQuery.of(context).size;
@@ -88,4 +90,15 @@ String getRarityName(Rarity rarity) {
       text = 'Common';
   }
   return text;
+}
+
+NFTModel buildNFTModel(dynamic item) {
+  return NFTModel(
+    id: item['id'] ?? '0',
+    name: item['name'] ?? 'Placeholder',
+    imageUrl: item['imageUrl'] ?? '',
+    rarity: item['rarity'] ?? Rarity.Common,
+    type: item['type'] ?? Type.Unit,
+    race: item['race'] ?? Race.Eldmen,
+  );
 }

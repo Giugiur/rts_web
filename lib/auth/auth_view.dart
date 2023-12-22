@@ -96,7 +96,7 @@ class AuthView extends StatelessWidget {
                           color: Theme.of(context).colorScheme.error,
                         ),
                       ) : Container(),
-                      authController.signingUp ? Center(child: const CircularProgressIndicator()) : OutlinedButton(
+                      authController.signingUp || authController.signingIn? Center(child: const CircularProgressIndicator()) : OutlinedButton(
                         onPressed: () => authController.isOnSignUpMode ? authController.createUser() : authController.signInUser(),
                         style: ButtonStyle(
                           padding: MaterialStateProperty.all<EdgeInsets>(

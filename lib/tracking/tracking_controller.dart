@@ -7,14 +7,6 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 
 class TrackingController extends GetxController {
 
-  @override
-  void onInit() {
-    super.onInit();
-    if (isTrackingEnabled()) {
-      initializeTracking();
-    }
-  }
-
   void trackEvent(String event) {
     if (isTrackingEnabled()) {
       FirebaseAnalytics.instance.logEvent(name: event);
@@ -43,14 +35,6 @@ class TrackingController extends GetxController {
   void acceptAllCookies() {
     GetStorage().write('cookies', 'accepted');
     Get.closeCurrentSnackbar();
-    initializeTracking();
-  }
-
-  Future<void> initializeTracking() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
   }
 
   bool isTrackingEnabled() {

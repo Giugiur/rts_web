@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import '../utils/custom_box_shadow.dart';
 import '../utils/utils.dart';
 import 'marketplace_controller.dart';
-import 'marketplace_listing_model.dart';
+import '../NFTs/NFTModel.dart';
 
 class MarketplaceFilters extends StatefulWidget {
   const MarketplaceFilters({super.key});

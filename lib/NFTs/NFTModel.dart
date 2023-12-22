@@ -23,7 +23,7 @@ enum Type {
   Pack,
 }
 
-class MarketplaceListing {
+class NFTModel {
   final String id;
   final String name;
   final String imageUrl;
@@ -31,7 +31,7 @@ class MarketplaceListing {
   final Race race;
   final Type type;
 
-  MarketplaceListing({
+  NFTModel({
     required this.id,
     required this.name,
     required this.imageUrl,
@@ -43,4 +43,5 @@ class MarketplaceListing {
   String getRarity() {
     return rarity.toString();
   }
+
 }

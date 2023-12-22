@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:rts_web/utils/utils.dart';
-import '../marketplace/marketplace_listing_model.dart';
+import '../NFTs/NFTModel.dart';
 
 class ICard extends StatefulWidget {
-  final MarketplaceListing marketplaceListing;
-  const ICard(this.marketplaceListing, {super.key});
+  final NFTModel nftModel;
+  const ICard(this.nftModel, {super.key});
 
   @override
   State<ICard> createState() => _ICardState();
@@ -43,7 +43,7 @@ class _ICardState extends State<ICard> {
             BoxShadow(
               blurRadius: isHover ? 15 : 2,
               spreadRadius: isHover ? 5 : 2,
-              color: getRarityColor(widget.marketplaceListing.rarity),
+              color: getRarityColor(widget.nftModel.rarity),
             )
           ]
         ),
@@ -70,7 +70,7 @@ class _ICardState extends State<ICard> {
         decoration: BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.cover,
-            image: AssetImage('images/${widget.marketplaceListing.name}.png')
+            image: AssetImage('images/${widget.nftModel.name}.png')
           )
         ),
       ),
