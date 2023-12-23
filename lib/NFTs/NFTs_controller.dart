@@ -18,8 +18,8 @@ class NFTsController extends GetxController {
       for (var item in response) {
         _NFTsList.add(buildNFTModel(item));
       }
+      update();
     }
-    update();
     return _NFTsList;
   }
 
@@ -29,8 +29,11 @@ class NFTsController extends GetxController {
       name: item['id'] ?? 'Placeholder',
       imageUrl: item['data']['imageUrl'] ?? '',
       rarity: item['data']['rarity'] != null ? convertToRarity(item['data']['rarity']) : Rarity.Common,
-      type: item['data']['type'] != null ? convertToType(item['data']['type']) : Type.Unit,
+      classs: item['data']['class'] != null ? convertToType(item['data']['class']) : Classs.Unit,
       race: item['data']['race'] != null ? convertToRace(item['data']['race']) : Race.Eldmen,
+      category: item['data']['category'] ?? 'Not defined',
+      description: item['data']['description'] ?? 'Not defined',
+      flavorText: item['data']['flavorText'] ?? 'Not defined',
     );
   }
 
@@ -58,17 +61,17 @@ class NFTsController extends GetxController {
     return ret;
   }
 
-  Type convertToType(String type) {
-    Type ret = Type.Unit;
-    switch (type) {
+  Classs convertToType(String classs) {
+    Classs ret = Classs.Unit;
+    switch (classs) {
       case 'Unit':
-        ret = Type.Unit;
+        ret = Classs.Unit;
         break;
       case 'Hero':
-        ret = Type.Hero;
+        ret = Classs.Hero;
         break;
       default:
-        ret = Type.Unit;
+        ret = Classs.Unit;
     }
     return ret;
   }
@@ -80,13 +83,13 @@ class NFTsController extends GetxController {
         ret = Race.Eldmen;
         break;
       case 'Groll':
-        ret = Race.Gorks;
+        ret = Race.Grolls;
         break;
       case 'Keenfolk':
         ret = Race.Keenfolk;
         break;
-      case 'Velhan':
-        ret = Race.Velhan;
+      case 'Keldarin':
+        ret = Race.Keldarin;
         break;
       default:
         ret = Race.Eldmen;

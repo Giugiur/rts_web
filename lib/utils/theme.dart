@@ -7,7 +7,7 @@ TextTheme darkTextTheme = const TextTheme(
   ),
   bodyMedium: TextStyle(
     color: Colors.white,
-    fontSize: 13,
+    fontSize: 14,
   ),
   bodySmall: TextStyle(
     color: Colors.white,
@@ -19,7 +19,7 @@ TextTheme darkTextTheme = const TextTheme(
   ),
   displayMedium: TextStyle(
     color: Color.fromRGBO(227, 186, 70, 1),
-    fontSize: 13,
+    fontSize: 14,
   ),
   displaySmall: TextStyle(
     color: Color.fromRGBO(227, 186, 70, 1),

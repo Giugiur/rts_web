@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:rts_web/auth/auth_forgotten.dart';
-import 'package:rts_web/marketplace/marketplace_detail.dart';
+import 'package:rts_web/marketplace/detail/marketplace_detail.dart';
 import 'package:rts_web/tracking/firebase_options.dart';
 import 'API/API.dart';
 import 'inventory/inventory_view.dart';

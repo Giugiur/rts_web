@@ -7,20 +7,26 @@ enum Rarity {
 }
 
 enum Race {
-  Eldmen,
-  Keenfolk,
-  Velhan,
-  Gorks,
-  Shadowlings,
+  Eldmen('Eldmen'),
+  Keenfolk('Keenfolk'),
+  Keldarin("Kel'Darin"),
+  Grolls('Grolls'),
+  Dragonkin('Dragonkin');
+
+  const Race(this.label);
+  final String label;
 }
 
-enum Type {
-  Unit,
-  Hero,
-  Item,
-  Skin,
-  Pass,
-  Pack,
+enum Classs {
+  Unit('Unit'),
+  Hero('Hero'),
+  Item('Item'),
+  Skin('Skin'),
+  Pass('Pass'),
+  Pack('Pack');
+
+  const Classs(this.label);
+  final String label;
 }
 
 class NFTModel {
@@ -29,7 +35,10 @@ class NFTModel {
   final String imageUrl;
   final Rarity rarity;
   final Race race;
-  final Type type;
+  final Classs classs;
+  final String category;
+  final String description;
+  final String flavorText;
 
   NFTModel({
     required this.id,
@@ -37,11 +46,18 @@ class NFTModel {
     required this.imageUrl,
     required this.rarity,
     required this.race,
-    required this.type,
+    required this.classs,
+    required this.category,
+    required this.description,
+    required this.flavorText,
   });
 
   String getRarity() {
     return rarity.toString();
+  }
+
+  String getRace() {
+    return race.toString();
   }
 
 }

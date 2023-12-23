@@ -91,14 +91,3 @@ String getRarityName(Rarity rarity) {
   }
   return text;
 }
-
-NFTModel buildNFTModel(dynamic item) {
-  return NFTModel(
-    id: item['id'] ?? '0',
-    name: item['name'] ?? 'Placeholder',
-    imageUrl: item['imageUrl'] ?? '',
-    rarity: item['rarity'] ?? Rarity.Common,
-    type: item['type'] ?? Type.Unit,
-    race: item['race'] ?? Race.Eldmen,
-  );
-}

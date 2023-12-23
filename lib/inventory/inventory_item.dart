@@ -16,7 +16,7 @@ class InventoryItem extends StatelessWidget {
           Text(nftModel.rarity.toString()),
           Text(nftModel.race.toString()),
           Text(nftModel.imageUrl),
-          Text(nftModel.type.toString()),
+          Text(nftModel.classs.toString()),
         ],
       ),
     );

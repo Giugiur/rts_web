@@ -38,7 +38,7 @@ class _ICardState extends State<ICard> {
         height: double.infinity,
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Colors.transparent,
           boxShadow: [
             BoxShadow(
               blurRadius: isHover ? 15 : 2,
