@@ -21,6 +21,7 @@ dependencies:
   firebase_auth: ^4.15.3
   http: ^1.1.0
   cloud_firestore: ^4.13.6
+  info_popup: ^4.3.1
 
 dev_dependencies:
   flutter_test:

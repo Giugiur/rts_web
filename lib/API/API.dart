@@ -74,4 +74,18 @@ class API {
     return ret;
   }
 
+  Future<List<dynamic>> getPassives() async{
+    var ret = [];
+    await db.collection("passives").get().then((event) {
+      for (var doc in event.docs) {
+        // print("${doc.id} => ${doc.data()}");
+        ret.add({
+          'id': doc.id,
+          'data': doc.data(),
+        });
+      }
+    });
+    return ret;
+  }
+
 }

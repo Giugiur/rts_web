@@ -39,6 +39,12 @@ class NFTModel {
   final String category;
   final String description;
   final String flavorText;
+  final int usdPrice;
+  final String totalSupply;
+  final int guardValue;
+  List<String> passives;
+  String passiveName;
+  String passiveDescription;
 
   NFTModel({
     required this.id,
@@ -50,7 +56,25 @@ class NFTModel {
     required this.category,
     required this.description,
     required this.flavorText,
+    required this.usdPrice,
+    required this.totalSupply,
+    required this.guardValue,
+    this.passives = const [],
+    this.passiveName = '',
+    this.passiveDescription = '',
   });
+
+  String displayPassives() {
+    String ret = '';
+    for (var passive in passives) {
+      if (passives.length-1 == passives.indexOf(passive)) {
+        ret += passive;
+      } else {
+        ret += '$passive, ';
+      }
+    }
+    return ret;
+  }
 
   String getRarity() {
     return rarity.toString();

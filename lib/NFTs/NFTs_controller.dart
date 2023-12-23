@@ -25,16 +25,30 @@ class NFTsController extends GetxController {
 
   NFTModel buildNFTModel(dynamic item) {
     return NFTModel(
-      id: item['data']['id'] ?? '1',
-      name: item['id'] ?? 'Placeholder',
+      id: item['data']['id'] ?? 'No ID',
+      name: item['id'] ?? 'No Name',
       imageUrl: item['data']['imageUrl'] ?? '',
       rarity: item['data']['rarity'] != null ? convertToRarity(item['data']['rarity']) : Rarity.Common,
       classs: item['data']['class'] != null ? convertToType(item['data']['class']) : Classs.Unit,
       race: item['data']['race'] != null ? convertToRace(item['data']['race']) : Race.Eldmen,
-      category: item['data']['category'] ?? 'Not defined',
-      description: item['data']['description'] ?? 'Not defined',
-      flavorText: item['data']['flavorText'] ?? 'Not defined',
+      category: item['data']['category'] ?? 'No category',
+      description: item['data']['description'] ?? 'No description',
+      flavorText: item['data']['flavorText'] ?? 'No flavor text',
+      usdPrice: item['data']['usdPrice'] ?? 0,
+      totalSupply: item['data']['totalSupply'] ?? '0',
+      guardValue: item['data']['guardValue'] ?? 0,
+      passives: item['data']['passives'] != null ? buildPassives(item['data']['passives']): [],
+      passiveName: item['data']['passiveName'] ?? 'No passive name',
+      passiveDescription: item['data']['passiveDescription'] ?? 'No passive description',
     );
+  }
+
+  List<String> buildPassives (List<dynamic> passives) {
+    List<String> ret = [];
+    for (var passive in passives) {
+      ret.add(passive);
+    }
+    return ret;
   }
 
   Rarity convertToRarity(String rarity) {

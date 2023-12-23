@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:rts_web/marketplace/detail/marketplace_detail_attribute.dart';
 import 'package:rts_web/marketplace/detail/marketplace_detail_flavor_text.dart';
 import 'package:rts_web/marketplace/detail/marketplace_detail_mint_buttons.dart';
+import 'package:rts_web/marketplace/detail/marketplace_detail_passive_popup.dart';
 import 'package:rts_web/marketplace/marketplace_rarity_tag.dart';
 import '../../NFTs/NFTModel.dart';
 import '../../home/home_scaffold.dart';
@@ -63,7 +64,8 @@ class MarketplaceDetail extends StatelessWidget {
                     ),
                     const SizedBox(height: 20,),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Expanded(
                           flex: 25,
@@ -77,8 +79,14 @@ class MarketplaceDetail extends StatelessWidget {
                           flex: 25,
                           child: MarketplaceDetailAttribute('Category: ', marketplaceDetailController.assetDetail.category)
                         ),
+                        Expanded(
+                            flex: 25,
+                            child: MarketplaceDetailAttribute('Guard Value: ', marketplaceDetailController.assetDetail.guardValue.toString())
+                        ),
                       ],
                     ),
+                    const SizedBox(height: 20,),
+                    MarketplaceDetailPassivePopup(marketplaceDetailController.assetDetail),
                     const SizedBox(height: 20,),
                     MarketplaceDetailMintButtons(),
                     const SizedBox(height: 20,),
