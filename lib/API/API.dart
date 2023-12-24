@@ -61,8 +61,8 @@ class API {
 
   Future<List<dynamic>> getNFTs() async{
     var ret = [];
+    print('getting NFTs');
     await db.collection("nfts").get().then((event) {
-      print('making call');
       for (var doc in event.docs) {
         // print("${doc.id} => ${doc.data()}");
         ret.add({
@@ -76,6 +76,7 @@ class API {
 
   Future<List<dynamic>> getPassives() async{
     var ret = [];
+    print('getting passives');
     await db.collection("passives").get().then((event) {
       for (var doc in event.docs) {
         // print("${doc.id} => ${doc.data()}");

@@ -16,14 +16,14 @@ class NFTsController extends GetxController {
     if (_NFTsList.isEmpty) {
       List<dynamic> response = await API().getNFTs();
       for (var item in response) {
-        _NFTsList.add(buildNFTModel(item));
+        _NFTsList.add(await buildNFTModel(item));
       }
       update();
     }
     return _NFTsList;
   }
 
-  NFTModel buildNFTModel(dynamic item) {
+  NFTModel buildNFTModel(dynamic item)  {
     return NFTModel(
       id: item['data']['id'] ?? 'No ID',
       name: item['id'] ?? 'No Name',
@@ -38,15 +38,16 @@ class NFTsController extends GetxController {
       totalSupply: item['data']['totalSupply'] ?? '0',
       guardValue: item['data']['guardValue'] ?? 0,
       passives: item['data']['passives'] != null ? buildPassives(item['data']['passives']): [],
-      passiveName: item['data']['passiveName'] ?? 'No passive name',
-      passiveDescription: item['data']['passiveDescription'] ?? 'No passive description',
     );
   }
 
-  List<String> buildPassives (List<dynamic> passives) {
-    List<String> ret = [];
+  List<dynamic> buildPassives (List<dynamic> passives) {
+    List<dynamic> ret = [];
     for (var passive in passives) {
-      ret.add(passive);
+      ret.add({
+      'name': passive,
+      'description': '',
+      });
     }
     return ret;
   }

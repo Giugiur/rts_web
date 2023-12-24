@@ -11,7 +11,7 @@ class MarketplaceView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+    // ToDo: do smooth scroll
     return GetBuilder<MarketplaceController>(
       init: MarketplaceController(),
       builder: (marketplaceController) => HomeScaffold(

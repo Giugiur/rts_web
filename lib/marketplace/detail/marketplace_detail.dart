@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rts_web/NFTs/NFTs_controller.dart';
 import 'package:rts_web/marketplace/detail/marketplace_detail_attribute.dart';
 import 'package:rts_web/marketplace/detail/marketplace_detail_flavor_text.dart';
 import 'package:rts_web/marketplace/detail/marketplace_detail_mint_buttons.dart';
@@ -86,7 +87,7 @@ class MarketplaceDetail extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 20,),
-                    MarketplaceDetailPassivePopup(marketplaceDetailController.assetDetail),
+                    Container(width:double.infinity, child: Center(child: MarketplaceDetailPassivePopup(marketplaceDetailController.assetDetail))),
                     const SizedBox(height: 20,),
                     MarketplaceDetailMintButtons(),
                     const SizedBox(height: 20,),
@@ -99,7 +100,7 @@ class MarketplaceDetail extends StatelessWidget {
               ),
             ),
           ],
-        ) : Container()
+        ) : const Center(child: CircularProgressIndicator(),)
       )
     );
   }
