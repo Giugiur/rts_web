@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:rts_web/marketplace/detail/marketplace_detail_controller.dart';
 
 class MarketplaceDetailMintButtons extends StatefulWidget {
   const MarketplaceDetailMintButtons({super.key});
@@ -8,6 +10,8 @@ class MarketplaceDetailMintButtons extends StatefulWidget {
 }
 
 class _MarketplaceDetailMintButtonsState extends State<MarketplaceDetailMintButtons> {
+  MarketplaceDetailController marketplaceDetailController = Get.put(MarketplaceDetailController());
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -17,7 +21,7 @@ class _MarketplaceDetailMintButtonsState extends State<MarketplaceDetailMintButt
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () => marketplaceDetailController.mintWithCreditCard(),
             child: Text('Mint with Credit Card'),
             style: ElevatedButton.styleFrom(
               shape: RoundedRectangleBorder(

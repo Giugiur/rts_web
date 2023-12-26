@@ -27,24 +27,28 @@ class _MarketplaceDetailState extends State<MarketplaceDetail> {
 
   @override
   void initState() {
-    NFTsController nftsController = Get.put(NFTsController());
+    // NFTsController nftsController = Get.put(NFTsController());
+    // MarketplaceDetailController marketplaceDetailController = Get.put(MarketplaceDetailController());
+
     var id = Get.parameters['id'];
-    nftsController.getNFTs().then((response) {
-      var asset = response.firstWhere((nft) => nft.id == id);
-      String videoDir = 'videos/${asset.name}.mp4';
-
-      _backgroundVideoController = VideoPlayerController.asset(
-          videoDir
-      )
-        ..initialize().then((_) {
-          setState(() {});
-        });
-      _backgroundVideoController.setLooping(true);
-      _backgroundVideoController.setVolume(0);
-      _backgroundVideoController.play();
-    });
-
-
+    // if (marketplaceDetailController.assetDetail.rarity == Rarity.Rare ||
+    //     marketplaceDetailController.assetDetail.rarity == Rarity.Mythic ||
+    //     marketplaceDetailController.assetDetail.rarity == Rarity.Fabled) {
+    //   nftsController.getNFTs().then((response) {
+    //     var asset = response.firstWhere((nft) => nft.id == id);
+    //     String videoDir = 'videos/${asset.name}.mp4';
+    //
+    //     _backgroundVideoController = VideoPlayerController.asset(
+    //         videoDir
+    //     )
+    //       ..initialize().then((_) {
+    //         setState(() {});
+    //       });
+    //     _backgroundVideoController.setLooping(true);
+    //     _backgroundVideoController.setVolume(0);
+    //     _backgroundVideoController.play();
+    //   });
+    // }
     super.initState();
   }
 
@@ -68,7 +72,7 @@ class _MarketplaceDetailState extends State<MarketplaceDetail> {
               child: Padding(
                 padding: const EdgeInsets.all(0.0),
                  child: Center(
-                   child: marketplaceDetailController.assetDetail.classs == Classs.Hero ? VideoPlayer(_backgroundVideoController) : Image.network(marketplaceDetailController.assetDetail.imageUrl),
+                   child: Image.network(marketplaceDetailController.assetDetail.imageUrl),
                  ),
               ),
             ),

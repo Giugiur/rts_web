@@ -32,23 +32,24 @@ enum Classs {
 }
 
 class NFTModel {
-  final String id;
-  final String name;
-  final String imageUrl;
-  final Rarity rarity;
-  final Race race;
-  final Classs classs;
-  final String category;
-  final String description;
-  final String flavorText;
-  final int usdPrice;
-  final String totalSupply;
-  final int guardValue;
+  String id;
+  String name;
+  String imageUrl;
+  Rarity rarity;
+  Race race;
+  Classs classs;
+  String category;
+  String description;
+  String flavorText;
+  int usdPrice;
+  String totalSupply;
+  int guardValue;
   String armorType;
   String attackType;
   List<dynamic> passives;
   List<String> passiveDescriptions;
   List<dynamic> bonuses;
+  int amount;
 
   NFTModel({
     required this.id,
@@ -68,7 +69,29 @@ class NFTModel {
     this.passives = const [],
     this.passiveDescriptions = const [],
     this.bonuses = const [],
+    this.amount = 0,
   });
+
+  // NFTModel.from(NFTModel nft) {
+  //   id = nft.id;
+  //   name = nft.name;
+  //   imageUrl = nft.imageUrl;
+  //   rarity = nft.rarity;
+  //   race = nft.race;
+  //   classs = nft.classs;
+  //   category = nft.category;
+  //   description = nft.description;
+  //   flavorText = nft.flavorText;
+  //   usdPrice = nft.usdPrice;
+  //   totalSupply = nft.totalSupply;
+  //   guardValue = nft.guardValue;
+  //   armorType = nft.armorType;
+  //   attackType = nft.attackType;
+  //   passives = nft.passives;
+  //   passiveDescriptions = nft.passiveDescriptions;
+  //   bonuses = nft.bonuses;
+  //   amount = nft.amount;
+  // }
 
   String getRarity() {
     return rarity.toString();

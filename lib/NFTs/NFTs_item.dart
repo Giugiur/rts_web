@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../widgets/i_card.dart';
 import 'NFTModel.dart';
 import '../utils/custom_box_shadow.dart';
+import '../utils/constants.dart';
 import '../marketplace/marketplace_rarity_tag.dart';
 
 class NftItem extends StatelessWidget {
@@ -59,7 +61,7 @@ class NftItem extends StatelessWidget {
                       const SizedBox(width: 5,),
                       Align(
                         alignment: Alignment.centerRight,
-                        child: MarketplaceRarityTag(nftModel.rarity)
+                        child: Get.currentRoute == INVENTORY ? Text('(${nftModel.amount})'): MarketplaceRarityTag(nftModel.rarity)
                       )
                     ]
                   ),

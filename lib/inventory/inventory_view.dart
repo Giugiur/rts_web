@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rts_web/home/home_scaffold.dart';
+import 'package:rts_web/widgets/custom_loading_indicator.dart';
 
 import '../auth/auth_controller.dart';
 import '../utils/utils.dart';
@@ -25,15 +26,29 @@ class InventoryView extends StatelessWidget {
               children: [
                 Expanded(
                   flex: 10,
-                  child: Text(
-                    'Your Inventory',
-                    style: Theme.of(context).textTheme.headlineLarge,
+                  child: Row(
+                    children: [
+                      Text(
+                        'Your Inventory',
+                        style: Theme.of(context).textTheme.headlineLarge,
+                      ),
+                      const SizedBox(width: 5,),
+                      IconButton(
+                        iconSize: 30,
+                        icon: Icon(
+                          Icons.refresh,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                        onPressed: () => inventoryController.getUserAssets(),
+                      ),
+
+                    ],
                   ),
                 ),
                 Expanded(
                   flex: 90,
                   child: authController.isUserSignedIn.value ?
-                  InventoryGrid() :
+                  inventoryController.gettingAssets ? const CustomLoadingIndicator() : InventoryGrid() :
                   const Center(
                     child: Text('You must be signed in to see your inventory.'),
                   ),

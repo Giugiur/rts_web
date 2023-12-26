@@ -45,7 +45,6 @@ class AuthController extends GetxController {
         _authUID = user.uid;
       }
     });
-    update();
     super.onInit();
   }
 
@@ -57,24 +56,25 @@ class AuthController extends GetxController {
     update();
     if (_email == "" || _password == "") {
       _emptyFields = true;
-    } else {
-      try {
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: _email,
-          password: _password,
-        ).then((value) {
-          api.registerUser(_email, value.user!.uid);
-          signInUser();
-        });
-      } on FirebaseAuthException catch (e) {
-        if (e.code == 'weak-password') {
-          _passwordIsTooWeak = true;
-        } else if (e.code == 'email-already-in-use') {
-          _emailAlreadyInUse = true;
-        }
-      } catch (e) {
-        print(e);
-      }
+    } else {//TODO: Try this
+      // try {
+      //   await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      //     email: _email,
+      //     password: _password,
+      //   ).then((value) {
+      //     api.registerUser(_email, value.user!.uid);
+      //     signInUser();
+      //   });
+      // } on FirebaseAuthException catch (e) {
+      //   if (e.code == 'weak-password') {
+      //     _passwordIsTooWeak = true;
+      //   } else if (e.code == 'email-already-in-use') {
+      //     _emailAlreadyInUse = true;
+      //   }
+      // } catch (e) {
+      //   print(e);
+      // }
+      await api.createFirebaseUser(_email, _password);
     }
     _signingUp = false;
     update();

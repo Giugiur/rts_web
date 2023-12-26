@@ -16,7 +16,7 @@ class NFTsController extends GetxController {
     if (_NFTsList.isEmpty) {
       List<dynamic> response = await API().getNFTs();
       for (var item in response) {
-        _NFTsList.add(await buildNFTModel(item));
+        _NFTsList.add(buildNFTModel(item));
       }
       update();
     }
@@ -42,6 +42,35 @@ class NFTsController extends GetxController {
       passives: item['data']['passives'] != null ? buildPassives(item['data']['passives']): [],
       bonuses: item['data']['bonuses'] ?? [],
     );
+  }
+
+  NFTModel buildNFTFromCopy(NFTModel nft) {
+    return NFTModel(
+      id: nft.id,
+      name: nft.name,
+      imageUrl: nft.imageUrl,
+      rarity: nft.rarity,
+      classs: nft.classs,
+      race: nft.race,
+      category: nft.category,
+      description: nft.description,
+      flavorText: nft.flavorText,
+      usdPrice: nft.usdPrice,
+      totalSupply: nft.totalSupply,
+      guardValue: nft.guardValue,
+      armorType: nft.armorType,
+      attackType: nft.attackType,
+      passives: nft.passives,
+      bonuses: nft.bonuses,
+    );
+  }
+
+  List<NFTModel> copyFrom (List<NFTModel> originalList) {
+    List<NFTModel> ret = [];
+    for (var nft in originalList) {
+      ret.add(buildNFTFromCopy(nft));
+    }
+    return ret;
   }
 
   List<dynamic> buildPassives (List<dynamic> passives) {

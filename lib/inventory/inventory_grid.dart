@@ -22,7 +22,7 @@ class InventoryGrid extends StatelessWidget {
             style: Theme.of(context).textTheme.bodyLarge,
           ),
           TextButton(
-            onPressed: () => inventoryController.getUserAssets(), //Get.toNamed(MARKETPLACE)
+            onPressed: () => Get.toNamed(MARKETPLACE),
             child: Text(
               'buying an asset.',
               style: Theme.of(context).textTheme.displayLarge,
