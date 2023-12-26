@@ -27,16 +27,15 @@ class InventoryController extends GetxController {
   void getUserAssets() async {
       //TODO: Handle more than 1 page or 50 items
       var assets = await api.getUserAssets(authController.authUID);
-      var decoded = json.decode(assets.body);
-      var nftList = await nftsController.getNFTs();
-      // extract ID,
-      // match ID with NFT data
-      // display only those NFT
-      // print(decoded['data']);
+      var userAssets = json.decode(assets.body);
+      List<NFTModel> nftList = List.from(await nftsController.getNFTs());
+      print(userAssets['data']);
       nftList.removeWhere((nft) {
         bool found = false; int i = 0;
-        while(i< decoded['data'].length) {
-          if (decoded['data'][i]['id'] == nft.id) {
+        while(i< userAssets['data'].length && !found) {
+          print('nft ID: '); print(nft.name);
+          print('asset ID: '); print(userAssets['data'][i]['name']);
+          if (userAssets['data'][i]['name'] == nft.name) {
             found = true;
           }
           i++;

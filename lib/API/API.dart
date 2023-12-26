@@ -45,7 +45,7 @@ class API {
   }
 
   Future<http.Response> getUserAssets(String uid) async {
-    final url = Uri.parse('https://api.gameshift.dev/users/1/assets'); //ToDo: Replace for $uid
+    final url = Uri.parse('https://api.gameshift.dev/users/$uid/assets'); //ToDo: Replace for $uid
 
     var response = await http.get(url,
       headers: {

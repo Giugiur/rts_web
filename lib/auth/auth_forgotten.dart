@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:rts_web/widgets/custom_loading_indicator.dart';
 import 'auth_controller.dart';
 import '../home/home_scaffold.dart';
 import '../utils/constants.dart';
@@ -39,7 +40,7 @@ class AuthForgotten extends StatelessWidget {
                   onChanged: (value) => authController.changeForgottenEmail(value),
                 ),
                 const SizedBox(height: 20),
-                authController.sendingForgottenEmail ? Center(child: const CircularProgressIndicator()) : OutlinedButton(
+                authController.sendingForgottenEmail ? const CustomLoadingIndicator() : OutlinedButton(
                   onPressed: () => authController.resetPassword(),
                   style: ButtonStyle(
                     padding: MaterialStateProperty.all<EdgeInsets>(

@@ -20,7 +20,9 @@ enum Race {
 enum Classs {
   Unit('Unit'),
   Hero('Hero'),
-  Item('Item'),
+  Doctrine('Doctrine'),
+  Technology('Technology'),
+  Artifact('Artifact'),
   Skin('Skin'),
   Pass('Pass'),
   Pack('Pack');
@@ -42,8 +44,11 @@ class NFTModel {
   final int usdPrice;
   final String totalSupply;
   final int guardValue;
+  String armorType;
+  String attackType;
   List<dynamic> passives;
   List<String> passiveDescriptions;
+  List<dynamic> bonuses;
 
   NFTModel({
     required this.id,
@@ -58,8 +63,11 @@ class NFTModel {
     required this.usdPrice,
     required this.totalSupply,
     required this.guardValue,
+    this.armorType = '',
+    this.attackType = '',
     this.passives = const [],
     this.passiveDescriptions = const [],
+    this.bonuses = const [],
   });
 
   String getRarity() {

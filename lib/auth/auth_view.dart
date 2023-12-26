@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rts_web/home/home_scaffold.dart';
 import 'package:rts_web/utils/constants.dart';
+import 'package:rts_web/widgets/custom_loading_indicator.dart';
 import 'auth_controller.dart';
 import '../utils/utils.dart';
 import '../utils/constants.dart';
@@ -96,7 +97,7 @@ class AuthView extends StatelessWidget {
                           color: Theme.of(context).colorScheme.error,
                         ),
                       ) : Container(),
-                      authController.signingUp || authController.signingIn? Center(child: const CircularProgressIndicator()) : OutlinedButton(
+                      authController.signingUp || authController.signingIn? const CustomLoadingIndicator() : OutlinedButton(
                         onPressed: () => authController.isOnSignUpMode ? authController.createUser() : authController.signInUser(),
                         style: ButtonStyle(
                           padding: MaterialStateProperty.all<EdgeInsets>(

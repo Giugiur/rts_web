@@ -38,7 +38,7 @@ class MarketplaceDetailPassivePopup extends StatelessWidget {
               infoTextAlign: TextAlign.center,
             ),
             child: Text(
-              assetDetail.passives.length-1 == assetDetail.passives.indexOf(passive) ? '${passive['name']}.' : '${passive['name']}, ',
+              assetDetail.passives.length-1 == assetDetail.passives.indexOf(passive) ? '${passive['name']}' : '${passive['name']}, ',
               style: TextStyle(
                 shadows: [
                   Shadow(

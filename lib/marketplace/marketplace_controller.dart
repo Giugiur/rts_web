@@ -103,7 +103,7 @@ class MarketplaceController extends GetxController {
     Rarity.Fabled: true,
     Classs.Hero: true,
     Classs.Unit: true,
-    Classs.Item: true,
+    Classs.Artifact: true,
     Classs.Skin: true,
     Classs.Pass: true,
     Classs.Pack: true,
@@ -148,8 +148,8 @@ class MarketplaceController extends GetxController {
             return true;
           }
         }
-        if (filter is Type) {
-          if (!_filterObj[filter] && filter == nftModel.type) {
+        if (filter is Classs) {
+          if (!_filterObj[filter] && filter == nftModel.classs) {
             return true;
           }
         }

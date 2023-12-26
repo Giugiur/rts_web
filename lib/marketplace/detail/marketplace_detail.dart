@@ -1,17 +1,57 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rts_web/NFTs/NFTs_controller.dart';
+import 'package:rts_web/marketplace/detail/marketplace_detail_bonus_description.dart';
+import 'package:video_player/video_player.dart';
 import 'package:rts_web/marketplace/detail/marketplace_detail_attribute.dart';
 import 'package:rts_web/marketplace/detail/marketplace_detail_flavor_text.dart';
 import 'package:rts_web/marketplace/detail/marketplace_detail_mint_buttons.dart';
 import 'package:rts_web/marketplace/detail/marketplace_detail_passive_popup.dart';
 import 'package:rts_web/marketplace/marketplace_rarity_tag.dart';
 import '../../NFTs/NFTModel.dart';
+import '../../NFTs/NFTs_controller.dart';
 import '../../home/home_scaffold.dart';
+import '../../widgets/custom_loading_indicator.dart';
 import 'marketplace_detail_controller.dart';
 
-class MarketplaceDetail extends StatelessWidget {
+class MarketplaceDetail extends StatefulWidget {
   const MarketplaceDetail({super.key});
+
+  @override
+  State<MarketplaceDetail> createState() => _MarketplaceDetailState();
+}
+
+class _MarketplaceDetailState extends State<MarketplaceDetail> {
+  late VideoPlayerController _backgroundVideoController;
+
+  @override
+  void initState() {
+    NFTsController nftsController = Get.put(NFTsController());
+    var id = Get.parameters['id'];
+    nftsController.getNFTs().then((response) {
+      var asset = response.firstWhere((nft) => nft.id == id);
+      String videoDir = 'videos/${asset.name}.mp4';
+
+      _backgroundVideoController = VideoPlayerController.asset(
+          videoDir
+      )
+        ..initialize().then((_) {
+          setState(() {});
+        });
+      _backgroundVideoController.setLooping(true);
+      _backgroundVideoController.setVolume(0);
+      _backgroundVideoController.play();
+    });
+
+
+    super.initState();
+  }
+
+  @override dispose() {
+    _backgroundVideoController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +68,7 @@ class MarketplaceDetail extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(0.0),
                  child: Center(
-                   child: Image.network(marketplaceDetailController.assetDetail.imageUrl),
+                   child: marketplaceDetailController.assetDetail.classs == Classs.Hero ? VideoPlayer(_backgroundVideoController) : Image.network(marketplaceDetailController.assetDetail.imageUrl),
                  ),
               ),
             ),
@@ -68,26 +108,40 @@ class MarketplaceDetail extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Expanded(
-                          flex: 25,
-                          child: MarketplaceDetailAttribute('Race: ', marketplaceDetailController.assetDetail.race.label)
-                        ),
-                        Expanded(
-                          flex: 25,
-                          child: MarketplaceDetailAttribute('Class: ', marketplaceDetailController.assetDetail.classs.label)
-                        ),
-                        Expanded(
-                          flex: 25,
-                          child: MarketplaceDetailAttribute('Category: ', marketplaceDetailController.assetDetail.category)
-                        ),
-                        Expanded(
-                            flex: 25,
-                            child: MarketplaceDetailAttribute('Guard Value: ', marketplaceDetailController.assetDetail.guardValue.toString())
-                        ),
+                        MarketplaceDetailAttribute('Race: ', marketplaceDetailController.assetDetail.race.label),
+                        const SizedBox(width: 40,),
+                        MarketplaceDetailAttribute('Class: ', marketplaceDetailController.assetDetail.classs.label),
+                        const SizedBox(width: 40,),
+                        MarketplaceDetailAttribute('Category: ', marketplaceDetailController.assetDetail.category),
+                        const SizedBox(width: 40,),
+                        MarketplaceDetailAttribute('Guard Value: ', marketplaceDetailController.assetDetail.guardValue.toString()),
                       ],
                     ),
                     const SizedBox(height: 20,),
-                    Container(width:double.infinity, child: Center(child: MarketplaceDetailPassivePopup(marketplaceDetailController.assetDetail))),
+                    marketplaceDetailController.assetDetail.classs == Classs.Unit ? Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        MarketplaceDetailAttribute('Armor Type: ', marketplaceDetailController.assetDetail.armorType),
+                        const SizedBox(width: 40,),
+                        MarketplaceDetailAttribute('Attack Type: ', marketplaceDetailController.assetDetail.attackType),
+                      ],
+                    ) : Container(),
+                    marketplaceDetailController.assetDetail.classs == Classs.Doctrine ||  marketplaceDetailController.assetDetail.classs == Classs.Technology ?
+                        MarketplaceDetailBonusDescription(marketplaceDetailController.assetDetail) : Container(),
+                    const SizedBox(height: 20),
+                    marketplaceDetailController.assetDetail.classs == Classs.Unit || marketplaceDetailController.assetDetail.classs == Classs.Hero ?
+                      Container(width:double.infinity, child: Center(child: MarketplaceDetailPassivePopup(marketplaceDetailController.assetDetail))) : Container(),
+                    const SizedBox(height: 20,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children:[
+                        MarketplaceDetailAttribute('Origination price: USD', marketplaceDetailController.assetDetail.usdPrice.toString()),
+                        const SizedBox(width: 20,),
+                        MarketplaceDetailAttribute('Total Supply: ', marketplaceDetailController.assetDetail.totalSupply),
+                      ]
+                    ),
                     const SizedBox(height: 20,),
                     MarketplaceDetailMintButtons(),
                     const SizedBox(height: 20,),
@@ -100,7 +154,7 @@ class MarketplaceDetail extends StatelessWidget {
               ),
             ),
           ],
-        ) : const Center(child: CircularProgressIndicator(),)
+        ) : const CustomLoadingIndicator()
       )
     );
   }

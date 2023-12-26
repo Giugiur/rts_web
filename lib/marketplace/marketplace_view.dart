@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../home/home_scaffold.dart';
 import '../utils/utils.dart';
+import '../widgets/custom_loading_indicator.dart';
 import 'marketplace_controller.dart';
 import 'marketplace_filters.dart';
 import 'marketplace_grid.dart';
@@ -30,8 +31,8 @@ class MarketplaceView extends StatelessWidget {
                 flex: 75,
                 child: marketplaceController.isReady ?
                   const MarketplaceGrid() :
-                  const Center(child: CircularProgressIndicator())
-              ),
+                  const CustomLoadingIndicator()
+      ),
             ],
           ),
         ),

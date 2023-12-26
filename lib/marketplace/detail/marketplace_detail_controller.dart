@@ -22,9 +22,9 @@ class MarketplaceDetailController extends GetxController {
       passiveDescriptions = await API().getPassives();
     }
     fillDescriptions(assetDetail);
-    super.onInit();
     _isReady = true;
     update();
+    super.onInit();
   }
 
   void fillDescriptions(NFTModel assetDetail) {

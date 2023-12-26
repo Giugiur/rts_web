@@ -42,6 +42,7 @@ class AuthController extends GetxController {
         _isUserSignedIn.value = false;
       } else {
         _isUserSignedIn.value = true;
+        _authUID = user.uid;
       }
     });
     update();

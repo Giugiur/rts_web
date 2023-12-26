@@ -37,7 +37,10 @@ class NFTsController extends GetxController {
       usdPrice: item['data']['usdPrice'] ?? 0,
       totalSupply: item['data']['totalSupply'] ?? '0',
       guardValue: item['data']['guardValue'] ?? 0,
+      armorType: item['data']['armorType'] ?? 'No armor type',
+      attackType: item['data']['attackType'] ?? 'No attack type',
       passives: item['data']['passives'] != null ? buildPassives(item['data']['passives']): [],
+      bonuses: item['data']['bonuses'] ?? [],
     );
   }
 
@@ -84,6 +87,18 @@ class NFTsController extends GetxController {
         break;
       case 'Hero':
         ret = Classs.Hero;
+        break;
+      case 'Doctrine':
+        ret = Classs.Doctrine;
+        break;
+      case 'Technology':
+        ret = Classs.Technology;
+        break;
+      case 'Item':
+        ret = Classs.Artifact;
+        break;
+      case 'Pack':
+        ret = Classs.Pack;
         break;
       default:
         ret = Classs.Unit;
