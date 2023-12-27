@@ -72,27 +72,6 @@ class NFTModel {
     this.amount = 0,
   });
 
-  // NFTModel.from(NFTModel nft) {
-  //   id = nft.id;
-  //   name = nft.name;
-  //   imageUrl = nft.imageUrl;
-  //   rarity = nft.rarity;
-  //   race = nft.race;
-  //   classs = nft.classs;
-  //   category = nft.category;
-  //   description = nft.description;
-  //   flavorText = nft.flavorText;
-  //   usdPrice = nft.usdPrice;
-  //   totalSupply = nft.totalSupply;
-  //   guardValue = nft.guardValue;
-  //   armorType = nft.armorType;
-  //   attackType = nft.attackType;
-  //   passives = nft.passives;
-  //   passiveDescriptions = nft.passiveDescriptions;
-  //   bonuses = nft.bonuses;
-  //   amount = nft.amount;
-  // }
-
   String getRarity() {
     return rarity.toString();
   }

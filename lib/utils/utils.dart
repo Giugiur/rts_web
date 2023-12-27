@@ -54,13 +54,13 @@ Color getRarityColor(Rarity rarity) {
       color = Colors.greenAccent;
       break;
     case Rarity.Rare:
-      color = Colors.lightBlueAccent;
+      color = Colors.lightBlue;
       break;
     case Rarity.Mythic:
       color = Colors.purpleAccent;
       break;
     case Rarity.Fabled:
-      color = Colors.orange;
+      color = Colors.yellow;
       break;
     default:
       color = Colors.white;

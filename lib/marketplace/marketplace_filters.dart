@@ -343,7 +343,7 @@ class _MarketplaceFiltersState extends State<MarketplaceFilters> {
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       activeColor: Theme.of(context).focusColor,
-                      checkColor: Colors.white,
+                      checkColor: getRarityColor(Rarity.Common),
                       value: marketplaceController.filterObj[Rarity.Common],
                       onChanged: (newValue) => marketplaceController.updateFilter(Rarity.Common, newValue!),
                     ),
@@ -353,15 +353,15 @@ class _MarketplaceFiltersState extends State<MarketplaceFilters> {
                 flex: 50,
                 child: Obx(() =>
                     CheckboxListTile(
-                      title: const Text(
+                      title: Text(
                         'Uncommon',
                         style: TextStyle(
                           fontSize: 14,
-                          color: Colors.greenAccent,
+                          color: getRarityColor(Rarity.Uncommon),
                         )
                       ),
                       activeColor: Theme.of(context).focusColor,
-                      checkColor: Colors.greenAccent,
+                      checkColor: getRarityColor(Rarity.Uncommon),
                       value: marketplaceController.filterObj[Rarity.Uncommon],
                       onChanged: (newValue) => marketplaceController.updateFilter(Rarity.Uncommon, newValue!),
                     ),
@@ -375,15 +375,15 @@ class _MarketplaceFiltersState extends State<MarketplaceFilters> {
                 flex: 50,
                 child: Obx(() =>
                     CheckboxListTile(
-                      title: const Text(
+                      title: Text(
                         'Rare',
                         style: TextStyle(
                           fontSize: 14,
-                          color: Colors.lightBlue,
+                          color: getRarityColor(Rarity.Rare),
                           )
                       ),
                       activeColor: Theme.of(context).focusColor,
-                      checkColor: Colors.lightBlue,
+                      checkColor: getRarityColor(Rarity.Rare),
                       value: marketplaceController.filterObj[Rarity.Rare],
                       onChanged: (newValue) => marketplaceController.updateFilter(Rarity.Rare, newValue!),
                     ),
@@ -393,15 +393,15 @@ class _MarketplaceFiltersState extends State<MarketplaceFilters> {
                 flex: 50,
                 child: Obx(() =>
                     CheckboxListTile(
-                      title: const Text(
+                      title: Text(
                           'Mythic',
                           style: TextStyle(
                             fontSize: 14,
-                            color: Colors.purpleAccent,
+                            color: getRarityColor(Rarity.Mythic),
                           )
                       ),
                       activeColor: Theme.of(context).focusColor,
-                      checkColor: Colors.purpleAccent,
+                      checkColor: getRarityColor(Rarity.Mythic),
                       value: marketplaceController.filterObj[Rarity.Mythic],
                       onChanged: (newValue) => marketplaceController.updateFilter(Rarity.Mythic, newValue!),
                     ),
@@ -415,15 +415,15 @@ class _MarketplaceFiltersState extends State<MarketplaceFilters> {
                 flex: 50,
                 child: Obx(() =>
                     CheckboxListTile(
-                      title: const Text(
+                      title: Text(
                           'Fabled',
                           style: TextStyle(
                             fontSize: 14,
-                            color: Colors.orangeAccent,
+                            color: getRarityColor(Rarity.Fabled),
                           )
                       ),
                       activeColor: Theme.of(context).focusColor,
-                      checkColor: Colors.orangeAccent,
+                      checkColor: getRarityColor(Rarity.Fabled),
                       value: marketplaceController.filterObj[Rarity.Fabled],
                       onChanged: (newValue) => marketplaceController.updateFilter(Rarity.Fabled, newValue!),
                     ),

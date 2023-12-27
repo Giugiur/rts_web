@@ -38,7 +38,11 @@ TextTheme darkTextTheme = const TextTheme(
     fontSize: 20,
   ),
   //titleLarge: TextStyle(),
-  //titleMedium: TextStyle(),
+  titleMedium: TextStyle(
+    color: Colors.white,
+    fontSize: 24,
+    letterSpacing: 2,
+  ),
   //titleSmall: TextStyle(),
   labelLarge: TextStyle(
     color: Colors.white,
