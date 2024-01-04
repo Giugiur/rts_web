@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 enum Rarity {
   Common,
   Uncommon,
@@ -7,14 +9,15 @@ enum Rarity {
 }
 
 enum Race {
-  Eldmen('Eldmen'),
-  Keenfolk('Keenfolk'),
-  Keldarin("Kel'Darin"),
-  Grolls('Grolls'),
-  Dragonkin('Dragonkin');
+  Eldmen('Eldmen', Color(0xFF706c12)),  //2e2e2a
+  Keenfolk('Keenfolk', Color(0xFF1f1d12)),
+  Keldarin("Kel'Darin", Color(0xFF183d0e)),
+  Grolls('Grolls', Color(0xFF521405)),
+  Travelers('Travelers', Color(0xFF051c52));
 
-  const Race(this.label);
+  const Race(this.label, this.color);
   final String label;
+  final Color color;
 }
 
 enum Classs {

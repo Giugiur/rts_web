@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rts_web/home/races/home_races.dart';
 import 'package:web_smooth_scroll/web_smooth_scroll.dart';
 import 'home_controller.dart';
 import 'home_intro_section.dart';
@@ -39,11 +40,20 @@ class _HomeViewState extends State<HomeView> {
                 child: ListView(
                   shrinkWrap: true,
                   children: [
+                    const HomeRaces(),
                     const HomeIntroSection(),
                     Container(
                       width: deviceSize.width,
                       height: deviceSize.height,
                       color: Colors.black,
+                      child: Center(
+                        child: ElevatedButton(
+                          onPressed: () {  },
+                          child: Text(
+                            'Read our Whitepaper'
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),

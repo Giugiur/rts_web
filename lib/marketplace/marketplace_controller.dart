@@ -95,7 +95,7 @@ class MarketplaceController extends GetxController {
     Race.Keenfolk: true,
     Race.Keldarin: true,
     Race.Grolls: true,
-    Race.Dragonkin: true,
+    Race.Travelers: true,
     Rarity.Common: true,
     Rarity.Uncommon: true,
     Rarity.Rare: true,

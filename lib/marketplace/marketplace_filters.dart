@@ -194,13 +194,13 @@ class _MarketplaceFiltersState extends State<MarketplaceFilters> {
                 child: Obx(() =>
                     CheckboxListTile(
                       title: Text(
-                        'Dragonkin',
+                        'Travelers',
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       activeColor: Theme.of(context).focusColor,
                       checkColor: Colors.white,
-                      value: marketplaceController.filterObj[Race.Dragonkin],
-                      onChanged: (newValue) => marketplaceController.updateFilter(Race.Dragonkin, newValue!),
+                      value: marketplaceController.filterObj[Race.Travelers],
+                      onChanged: (newValue) => marketplaceController.updateFilter(Race.Travelers, newValue!),
                     ),
                 ),
               ),
