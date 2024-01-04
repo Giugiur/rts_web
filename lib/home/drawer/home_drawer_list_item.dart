@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rts_web/home/home_controller.dart';
 
 class HomeDrawerListItem extends StatefulWidget {
-  final String route;
+  final dynamic route;
   final IconData icon;
   final String label;
   const HomeDrawerListItem(this.route, this.icon, this.label, {super.key});
@@ -14,6 +15,12 @@ class HomeDrawerListItem extends StatefulWidget {
 class _HomeDrawerListItemState extends State<HomeDrawerListItem> {
 
   bool _isHovering = false;
+  HomeController homeController = Get.put(HomeController());
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   void onEnter() {
     setState(() {
@@ -35,7 +42,6 @@ class _HomeDrawerListItemState extends State<HomeDrawerListItem> {
       child: Material(
         type: MaterialType.transparency,
         child: ListTile(
-          onTap: () => Get.toNamed(widget.route),
           leading: Icon(
             widget.icon,
             size: 26,
@@ -52,6 +58,7 @@ class _HomeDrawerListItemState extends State<HomeDrawerListItem> {
               )
             ),
           ),
+          onTap: () => widget.route is String ? Get.toNamed(widget.route) : homeController.anchorScrollController.scrollToIndex(index: widget.route),
         ),
       ),
     );

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rts_web/home/races/home_races.dart';
+import 'package:rts_web/home/whitepaper/home_whitepaper.dart';
 import 'package:web_smooth_scroll/web_smooth_scroll.dart';
+import 'package:anchor_scroll_controller/anchor_scroll_controller.dart';
 import 'home_controller.dart';
 import 'home_intro_section.dart';
 import 'home_scaffold.dart';
@@ -14,46 +16,42 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  late ScrollController _scrollController;
 
   @override
   void initState() {
-    _scrollController = ScrollController();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final deviceSize = MediaQuery.of(context).size;
-
     return GetBuilder<HomeController>(
       init: HomeController(),
       builder: (homeController) =>
         HomeScaffold(
-          body: Listener(
+           body: Listener(
             onPointerSignal: (pointerSignal) => homeController.listenForScrolling(pointerSignal),
             child: WebSmoothScroll(
-              controller: !homeController.scrolled ? ScrollController() : _scrollController,
-              child: SingleChildScrollView(
-                controller: _scrollController,
+            controller: !homeController.scrolled ? ScrollController() : homeController.anchorScrollController,
+            child: SingleChildScrollView(
+                controller: homeController.anchorScrollController,
                 physics: const NeverScrollableScrollPhysics(),
                 child: ListView(
                   shrinkWrap: true,
                   children: [
-                    const HomeRaces(),
-                    const HomeIntroSection(),
-                    Container(
-                      width: deviceSize.width,
-                      height: deviceSize.height,
-                      color: Colors.black,
-                      child: Center(
-                        child: ElevatedButton(
-                          onPressed: () {  },
-                          child: Text(
-                            'Read our Whitepaper'
-                          ),
-                        ),
-                      ),
+                    AnchorItemWrapper(
+                      controller: homeController.anchorScrollController,
+                      index: 0,
+                      child: const HomeIntroSection()
+                    ),
+                    AnchorItemWrapper(
+                        controller: homeController.anchorScrollController,
+                        index: 1,
+                        child: const HomeWhitepaper()
+                    ),
+                    AnchorItemWrapper(
+                        controller: homeController.anchorScrollController,
+                        index: 2,
+                        child: const HomeRaces()
                     ),
                   ],
                 ),

@@ -61,10 +61,9 @@ class HomeScaffold extends StatelessWidget {
                     ),
                     const HomeDrawerListItem(HOME, Icons.home, 'Home'),
                     const HomeDrawerListItem(MARKETPLACE, Icons.shopping_cart, 'Marketplace'),
-                    const HomeDrawerListItem(HOME, Icons.add_road, 'Roadmap'),
-                    const HomeDrawerListItem(HOME, Icons.edit_document, 'Whitepaper'),
-                    const HomeDrawerListItem(HOME, Icons.search, 'Explore'),
-                    const HomeDrawerListItem(HOME, Icons.people, 'Team'),
+                    const HomeDrawerListItem(1, Icons.edit_document, 'Whitepaper'),
+                    const HomeDrawerListItem(2, Icons.search, 'Explore'),
+                    const HomeDrawerListItem(3, Icons.people, 'Team'),
                     const Spacer(),
                     DefaultTextStyle(
                       style: const TextStyle(
