@@ -28,7 +28,7 @@ class HomeScaffold extends StatelessWidget {
             backdrop: Container(
               width: double.infinity,
               height: double.infinity,
-              color: Colors.black87,
+              color: Colors.black54,
             ),
             controller: _advancedDrawerController,
             animationCurve: Curves.easeInOut,
@@ -49,14 +49,14 @@ class HomeScaffold extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Container(
-                      width: 128.0,
+                      width: 200.0,
                       height: 128.0,
                       margin: const EdgeInsets.only(
                         top: 24.0,
-                        bottom: 64.0,
+                        bottom: 24.0,
                       ),
                       child: Image.asset(
-                        'images/short_logo.png',
+                        'images/long_logo.png',
                       ),
                     ),
                     const HomeDrawerListItem(HOME, Icons.home, 'Home'),

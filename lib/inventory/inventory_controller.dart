@@ -29,6 +29,12 @@ class InventoryController extends GetxController {
     });
   }
 
+  @override
+  void onReady() {
+    print('onready');
+    super.onReady();
+  }
+
   void getUserAssets() async {
     displayList = [];
     _gettingAssets = true;
@@ -36,19 +42,21 @@ class InventoryController extends GetxController {
     var assets = await api.getUserAssets(authController.authUID);
     //TODO: Handle more than 1 page / 50 items
     var userAssets = json.decode(assets.body);
-    List<NFTModel> nftList = nftsController.copyFrom(await nftsController.getNFTs());
-    for (var asset in userAssets['data']) {
-      bool found = false;
-      int i = 0;
-      while(i < nftList.length && !found) {
-        if (nftList[i].name == asset['name']) {
-          found = true;
-          if (!displayList.contains(nftList[i])) {
-            displayList.add(nftList[i]);
+    if (userAssets['statusCode'] != 404) {
+      List<NFTModel> nftList = nftsController.copyFrom(await nftsController.getNFTs());
+      for (var asset in userAssets['data']) {
+        bool found = false;
+        int i = 0;
+        while(i < nftList.length && !found) {
+          if (nftList[i].name == asset['name']) {
+            found = true;
+            if (!displayList.contains(nftList[i])) {
+              displayList.add(nftList[i]);
+            }
+            displayList[displayList.indexOf(nftList[i])].amount++;
+          } else {
+            i++;
           }
-          displayList[displayList.indexOf(nftList[i])].amount++;
-        } else {
-          i++;
         }
       }
     }

@@ -261,7 +261,7 @@ class _MarketplaceFiltersState extends State<MarketplaceFilters> {
                 child: Obx(() =>
                   CheckboxListTile(
                     title: Text(
-                      'Item',
+                      'Artifact',
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     activeColor: Theme.of(context).focusColor,
@@ -276,14 +276,48 @@ class _MarketplaceFiltersState extends State<MarketplaceFilters> {
                 child: Obx(() =>
                   CheckboxListTile(
                     title: Text(
-                      'Skin',
+                      'Doctrine',
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     activeColor: Theme.of(context).focusColor,
                     checkColor: Colors.white,
-                    value: marketplaceController.filterObj[Classs.Skin],
-                    onChanged: (newValue) => marketplaceController.updateFilter(Classs.Skin, newValue!),
+                    value: marketplaceController.filterObj[Classs.Doctrine],
+                    onChanged: (newValue) => marketplaceController.updateFilter(Classs.Doctrine, newValue!),
                   ),
+                ),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Expanded(
+                flex: 50,
+                child: Obx(() =>
+                    CheckboxListTile(
+                      title: Text(
+                        'Technology',
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                      activeColor: Theme.of(context).focusColor,
+                      checkColor: Colors.white,
+                      value: marketplaceController.filterObj[Classs.Technology],
+                      onChanged: (newValue) => marketplaceController.updateFilter(Classs.Technology, newValue!),
+                    ),
+                ),
+              ),
+              Expanded(
+                flex: 50,
+                child: Obx(() =>
+                    CheckboxListTile(
+                      title: Text(
+                        'Skin',
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                      activeColor: Theme.of(context).focusColor,
+                      checkColor: Colors.white,
+                      value: marketplaceController.filterObj[Classs.Skin],
+                      onChanged: (newValue) => marketplaceController.updateFilter(Classs.Skin, newValue!),
+                    ),
                 ),
               ),
             ],

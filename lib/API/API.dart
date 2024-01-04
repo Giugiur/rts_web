@@ -9,7 +9,7 @@ import '../utils/utils.dart';
 
 class API {
 
-  static const API_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiIxODczNjNiZS0xOWQ1LTRmMzQtYjZhYy01M2M5Y2I1NWJiYmIiLCJzdWIiOiI2YmQwMjg0Yi03ZTU1LTRhM2YtYTEwYi1kNTI4YjAwMjRlM2MiLCJpYXQiOjE3MDMwODk2OTV9.gfuWWKd7aLD06XpBLRfs2emTOFwb59bNMajIBH9j45Q';
+  static const API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiIxODczNjNiZS0xOWQ1LTRmMzQtYjZhYy01M2M5Y2I1NWJiYmIiLCJzdWIiOiI2YmQwMjg0Yi03ZTU1LTRhM2YtYTEwYi1kNTI4YjAwMjRlM2MiLCJpYXQiOjE3MDMwODk2OTV9.gfuWWKd7aLD06XpBLRfs2emTOFwb59bNMajIBH9j45Q"; //String.fromEnvironment("API_KEY");
   FirebaseFirestore db = FirebaseFirestore.instance;
 
   Future<void> createFirebaseUser(String email, String password) async {
@@ -21,6 +21,7 @@ class API {
       ).then((value) {
         registerUser(email, value.user!.uid);
         authController.signInUser();
+        // TODO: If they were on the marketplace, redirect them
       });
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {

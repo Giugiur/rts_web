@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:rts_web/inventory/inventory_controller.dart';
 import 'package:rts_web/utils/constants.dart';
 import 'package:rts_web/widgets/custom_snackbar.dart';
 
@@ -84,12 +85,14 @@ class AuthController extends GetxController {
     _authUID = '';
     _signingIn = true;
     update();
+    InventoryController inventoryController = Get.put(InventoryController());
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: _email,
         password: _password
       ).then((value) {
         _authUID = value.user!.uid;
+        inventoryController.getUserAssets();
         update();
         Get.toNamed(INVENTORY);
         createSnackbar('success', "Welcome to Timefront!");

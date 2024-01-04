@@ -104,6 +104,8 @@ class MarketplaceController extends GetxController {
     Classs.Hero: true,
     Classs.Unit: true,
     Classs.Artifact: true,
+    Classs.Doctrine: true,
+    Classs.Technology: true,
     Classs.Skin: true,
     Classs.Pass: true,
     Classs.Pack: true,

@@ -23,17 +23,27 @@ class MarketplaceDetailController extends GetxController {
   void onInit() async {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       var id = Get.parameters['id'];
-      List<NFTModel> nfts = await nftsController.getNFTs();
-      assetDetail = nfts.firstWhere((nft) => nft.id == id);
-      // TODo: Move it to a more general place so we avoid doing too many calls
-      if (passiveDescriptions.isEmpty) {
-        passiveDescriptions = await API().getPassives();
-      }
-      fillDescriptions(assetDetail);
+      await setAssetDetail(id!);
       _isReady = true;
       update();
       super.onInit();
     });
+  }
+
+  void setReadyStatus(bool value) {
+    _isReady = value;
+    update();
+  }
+
+  Future<void> setAssetDetail(String id) async {
+    List<NFTModel> nfts = await nftsController.getNFTs();
+    assetDetail = nfts.firstWhere((nft) => nft.id == id);
+    // TODo: Move it to a more general place so we avoid doing too many calls
+    if (passiveDescriptions.isEmpty) {
+      passiveDescriptions = await API().getPassives();
+    }
+    fillDescriptions(assetDetail);
+    update();
   }
 
   void fillDescriptions(NFTModel assetDetail) {
@@ -49,8 +59,8 @@ class MarketplaceDetailController extends GetxController {
     if (authController.isUserSignedIn.value) {
       api.assetTemplateCheckout(assetDetail.id).then((response) {
         String url = json.decode(response.body)['url'];
-        print(url);
         html.window.open(url, "_blank");
+        //To Do: Send to inventory after a time
       });
     } else {
       Get.toNamed(AUTH);

@@ -23,14 +23,18 @@ class MarketplaceDetail extends StatefulWidget {
 }
 
 class _MarketplaceDetailState extends State<MarketplaceDetail> {
-  late VideoPlayerController _backgroundVideoController;
+  //late VideoPlayerController _backgroundVideoController;
 
   @override
   void initState() {
     // NFTsController nftsController = Get.put(NFTsController());
-    // MarketplaceDetailController marketplaceDetailController = Get.put(MarketplaceDetailController());
-
+    MarketplaceDetailController marketplaceDetailController = Get.put(MarketplaceDetailController());
+    marketplaceDetailController.setReadyStatus(false);
+    print('init State on widget');
     var id = Get.parameters['id'];
+    marketplaceDetailController.setAssetDetail(id!).then((response) {
+      marketplaceDetailController.setReadyStatus(true);
+    });
     // if (marketplaceDetailController.assetDetail.rarity == Rarity.Rare ||
     //     marketplaceDetailController.assetDetail.rarity == Rarity.Mythic ||
     //     marketplaceDetailController.assetDetail.rarity == Rarity.Fabled) {
@@ -52,10 +56,10 @@ class _MarketplaceDetailState extends State<MarketplaceDetail> {
     super.initState();
   }
 
-  @override dispose() {
-    _backgroundVideoController.dispose();
-    super.dispose();
-  }
+  // @override dispose() {
+  //   _backgroundVideoController.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
