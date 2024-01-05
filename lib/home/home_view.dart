@@ -23,6 +23,11 @@ class _HomeViewState extends State<HomeView> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(
       init: HomeController(),
@@ -31,7 +36,7 @@ class _HomeViewState extends State<HomeView> {
            body: Listener(
             onPointerSignal: (pointerSignal) => homeController.listenForScrolling(pointerSignal),
             child: WebSmoothScroll(
-            controller: !homeController.scrolled ? ScrollController() : homeController.anchorScrollController,
+            controller: homeController.anchorScrollController,
             child: SingleChildScrollView(
                 controller: homeController.anchorScrollController,
                 physics: const NeverScrollableScrollPhysics(),

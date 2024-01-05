@@ -17,6 +17,7 @@ class HomeRaces extends StatelessWidget {
       child: TabContainer(
         // selectedTextStyle: Theme.of(context).textTheme.displayLarge,
         // unselectedTextStyle: Theme.of(context).textTheme.bodyLarge,
+        isStringTabs: false,
         radius: 12,
         tabEdge: TabEdge.bottom,
         tabCurve: Curves.easeIn,
@@ -41,12 +42,37 @@ class HomeRaces extends StatelessWidget {
           Race.Keldarin.color,
           Race.Grolls.color,
         ],
-        tabs: [
-          Race.Keenfolk.label,
-          Race.Travelers.label,
-          Race.Eldmen.label,
-          Race.Keldarin.label,
-          Race.Grolls.label
+        tabs: <Widget> [
+          ListTile(
+            leading: Icon(
+                Race.Keenfolk.icon
+            ),
+            title: Text(Race.Keenfolk.label),
+          ),
+          ListTile(
+            leading: Icon(
+                Race.Travelers.icon
+            ),
+            title: Text(Race.Travelers.label),
+          ),
+          ListTile(
+            leading: Icon(
+                Race.Eldmen.icon
+            ),
+            title: Text(Race.Eldmen.label),
+          ),
+          ListTile(
+            leading: Icon(
+                Race.Keldarin.icon
+            ),
+            title: Text(Race.Keldarin.label),
+          ),
+          ListTile(
+            leading: Icon(
+                Race.Grolls.icon
+            ),
+            title: Text(Race.Grolls.label),
+          ),
         ],
         children: [
           HomeRacePage(Race.Keenfolk),

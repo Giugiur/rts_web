@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rts_web/home/home_controller.dart';
 
+import '../../utils/constants.dart';
+
 class HomeDrawerListItem extends StatefulWidget {
   final dynamic route;
   final IconData icon;
@@ -58,7 +60,16 @@ class _HomeDrawerListItemState extends State<HomeDrawerListItem> {
               )
             ),
           ),
-          onTap: () => widget.route is String ? Get.toNamed(widget.route) : homeController.anchorScrollController.scrollToIndex(index: widget.route),
+          onTap: () {
+            if (widget.route is String) {
+              Get.toNamed(widget.route);
+            } else {
+              Get.toNamed(HOME);
+              Future.delayed(const Duration(milliseconds: 500), () {
+                homeController.anchorScrollController.scrollToIndex(index: widget.route);
+              });
+            }
+          },
         ),
       ),
     );
