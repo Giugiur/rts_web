@@ -49,11 +49,11 @@ class HomeRaces extends StatelessWidget {
           Race.Grolls.label
         ],
         children: [
-          HomeRacePage(Race.Keenfolk.label.toLowerCase()),
-          HomeRacePage(Race.Travelers.label.toLowerCase()),
-          HomeRacePage(Race.Eldmen.label.toLowerCase()),
-          HomeRacePage('keldarin'),
-          HomeRacePage(Race.Grolls.label.toLowerCase()),
+          HomeRacePage(Race.Keenfolk),
+          HomeRacePage(Race.Travelers),
+          HomeRacePage(Race.Eldmen),
+          HomeRacePage(Race.Keldarin),
+          HomeRacePage(Race.Grolls),
         ],
       ),
     );

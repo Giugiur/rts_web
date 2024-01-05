@@ -9,15 +9,18 @@ enum Rarity {
 }
 
 enum Race {
-  Eldmen('Eldmen', Color(0xFF706c12)),  //2e2e2a
-  Keenfolk('Keenfolk', Color(0xFF1f1d12)),
-  Keldarin("Kel'Darin", Color(0xFF183d0e)),
-  Grolls('Grolls', Color(0xFF521405)),
-  Travelers('Travelers', Color(0xFF051c52));
+  Eldmen('Eldmen', 'eldmen', Color(0xFF706c12), 'Healing, Religious, Cavalry, Gold Income'),  //2e2e2a
+  Keenfolk('Keenfolk', 'keenfolk', Color(0xFF1f1d12), 'Defensive, Infantry, Industrious, Territorial'),
+  Keldarin("Kel'Darin", 'keldarin', Color(0xFF183d0e), 'Magic, Ranged, Map Vision, Ambush'),
+  Grolls('Grolls', 'grolls', Color(0xFF521405), 'Aggressive, Swift Movement, Invasive, Unit Income'),
+  Travelers('Travelers', 'travelers', Color(0xFF051c52), 'Dispensable Units, Swarm Tactics, Resurrection, Invocations');
 
-  const Race(this.label, this.color);
+  const Race(this.label, this.icon, this.name, this.color, this.characterization);
   final String label;
+  final IconData icon;
+  final String name;
   final Color color;
+  final String characterization;
 }
 
 enum Classs {
