@@ -59,7 +59,7 @@ class HomeScaffold extends StatelessWidget {
                         'images/long_logo.png',
                       ),
                     ),
-                    const HomeDrawerListItem(HOME, Icons.home, 'Home'),
+                    HomeDrawerListItem(Get.currentRoute == HOME ? 0 : HOME, Icons.home, 'Home'),
                     const HomeDrawerListItem(MARKETPLACE, Icons.shopping_cart, 'Marketplace'),
                     const HomeDrawerListItem(1, Icons.edit_document, 'Whitepaper'),
                     const HomeDrawerListItem(2, Icons.search, 'Explore'),

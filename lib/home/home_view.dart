@@ -7,6 +7,7 @@ import 'package:anchor_scroll_controller/anchor_scroll_controller.dart';
 import 'home_controller.dart';
 import 'home_intro_section.dart';
 import 'home_scaffold.dart';
+import 'locations/home_locations.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -57,6 +58,11 @@ class _HomeViewState extends State<HomeView> {
                         controller: homeController.anchorScrollController,
                         index: 2,
                         child: const HomeRaces()
+                    ),
+                    AnchorItemWrapper(
+                        controller: homeController.anchorScrollController,
+                        index: 3,
+                        child: const HomeLocations()
                     ),
                   ],
                 ),

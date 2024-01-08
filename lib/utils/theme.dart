@@ -60,7 +60,7 @@ ThemeData darkTheme = ThemeData(
   fontFamily: 'Ubuntu',
   colorScheme: const ColorScheme(
     primary: Color.fromRGBO(227, 186, 70, 1),
-    secondary: Colors.red,
+    secondary: Colors.deepOrangeAccent,
     brightness: Brightness.dark,
     onPrimary: Color.fromRGBO(227, 186, 70, 1),
     onSecondary: Colors.red,
