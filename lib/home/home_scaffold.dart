@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:icons_flutter/icons_flutter.dart';
 import 'package:rts_web/auth/auth_controller.dart';
 import 'package:rts_web/auth/auth_dropdown_menu.dart';
 import 'package:rts_web/home/drawer/home_drawer_list_item.dart';
@@ -62,8 +63,9 @@ class HomeScaffold extends StatelessWidget {
                     HomeDrawerListItem(Get.currentRoute == HOME ? 0 : HOME, Icons.home, 'Home'),
                     const HomeDrawerListItem(MARKETPLACE, Icons.shopping_cart, 'Marketplace'),
                     const HomeDrawerListItem(1, Icons.edit_document, 'Whitepaper'),
-                    const HomeDrawerListItem(2, Icons.search, 'Explore'),
-                    const HomeDrawerListItem(3, Icons.people, 'Team'),
+                    const HomeDrawerListItem(2, FontAwesome.globe, 'The Known World'),
+                    const HomeDrawerListItem(3, FontAwesome.search, 'Races'),
+                    const HomeDrawerListItem(4, Icons.people, 'Team'),
                     const Spacer(),
                     DefaultTextStyle(
                       style: const TextStyle(

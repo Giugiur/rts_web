@@ -1,96 +1,65 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import '../../utils/paragraphs.dart';
+import 'package:get/get.dart';
+import 'package:rts_web/home/home_controller.dart';
+import 'package:rts_web/home/locations/home_locations_highlight.dart';
+import 'home_locations_pin.dart';
+
 
 class HomeLocations extends StatelessWidget {
-  const HomeLocations({super.key});
+  HomeLocations({super.key});
+
+  HomeController homeController = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
-    List<dynamic> locations = [
-      {
-        'title': 'The Twin Empires',
-        'image': 'images/eldmen_background.png',
-        'description': theEmpiresDescription,
-      },
-      {
-        'title': 'The Groll Tribes',
-        'image': 'images/grolls_background.png',
-        'description': loremIpsum,
-      },
-      {
-        'title': 'The Free Cities of Tentria',
-        'image': 'images/travelers_background.png',
-        'description': loremIpsum,
-      },
-    ];
 
-    return SizedBox(
-      width: deviceSize.width,
-      height: deviceSize.height,
-      child: CarouselSlider(
-        options: CarouselOptions(
-          height: deviceSize.height,
-          viewportFraction: 0.95,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Expanded(
+          flex: 75,
+          child: Container(
+            width: deviceSize.width,
+            height: deviceSize.height,
+            child:  Center(
+              child: switch (homeController.hoveringOver) {
+                '' => HomeLocationsHighlight(0),
+                'the_guilds' => HomeLocationsHighlight(1),
+                'spiros' => HomeLocationsHighlight(2),
+                Object() => null,
+                null => null,
+              },
+            ),
+          ),
         ),
-        items: locations.map((index) {
-          return Builder(
-            builder: (BuildContext context) {
-              return Container(
-                margin: EdgeInsets.symmetric(horizontal: 5.0),
-                width: deviceSize.width,
-                height: deviceSize.height,
-                child: Stack(
-                  children: [
-                    SizedBox.expand(
-                      child: Image.asset(
-                        index['image'],
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    Container(
-                      decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.topCenter, end: Alignment.bottomCenter,
-                          colors: [Colors.transparent, Color.fromRGBO(44, 42, 57, 1),],
-                          stops: [0, 1]
-                        ),
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Container(
-                        padding: const EdgeInsets.all(50),
-                        height: 325,
-                        width: 1000,
-                        child: Column(
-                          children: [
-                            Container(
-                              width: double.infinity,
-                              child: Text(
-                                index['title'],
-                                style: Theme.of(context).textTheme.headlineLarge,
-                                textAlign: TextAlign.left,
-                              ),
-                            ),
-                            const SizedBox(height: 40,),
-                            Text(
-                              index['description'],
-                              style: Theme.of(context).textTheme.labelLarge,
-                              textAlign: TextAlign.left,
-                            ),
-                          ],
-                        )
-                      ),
-                    ),
-                  ],
+        Expanded(
+          flex: 25,
+          child: Container(
+            width: deviceSize.width,
+            height: deviceSize.height,
+            child: Stack(
+              children: [
+                Image.asset(
+                  'images/the_known_world.png',
+                  fit: BoxFit.fitHeight,
                 ),
-              );
-            },
-          );
-        }).toList(),
-      )
+                HomeLocationsPin(
+                  right: 340,
+                  top: 0,
+                  region: 'the_guilds'
+                ),
+                HomeLocationsPin(
+                    right: 15,
+                    top: 20,
+                    region: 'spiros'
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

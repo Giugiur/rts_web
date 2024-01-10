@@ -44,6 +44,7 @@ class _HomeViewState extends State<HomeView> {
                 child: ListView(
                   shrinkWrap: true,
                   children: [
+                    HomeLocations(),
                     AnchorItemWrapper(
                       controller: homeController.anchorScrollController,
                       index: 0,
@@ -57,12 +58,12 @@ class _HomeViewState extends State<HomeView> {
                     AnchorItemWrapper(
                         controller: homeController.anchorScrollController,
                         index: 2,
-                        child: const HomeRaces()
+                        child:  HomeLocations()
                     ),
                     AnchorItemWrapper(
                         controller: homeController.anchorScrollController,
                         index: 3,
-                        child: const HomeLocations()
+                        child: const HomeRaces()
                     ),
                   ],
                 ),

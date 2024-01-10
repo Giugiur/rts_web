@@ -8,9 +8,11 @@ class HomeController extends GetxController {
   bool _scrolled = false;
   TrackingController trackingController = Get.put(TrackingController());
   late AnchorScrollController _anchorScrollController;
+  String _hoveringOver = '';
 
   get anchorScrollController => _anchorScrollController;
   get scrolled => _scrolled;
+  get hoveringOver => _hoveringOver;
 
   void listenForScrolling(pointerSignal) {
     if (pointerSignal is PointerScrollEvent) {
@@ -22,8 +24,15 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     _anchorScrollController = AnchorScrollController();
+    _hoveringOver = '';
     super.onInit();
     executeAfterBuild();
+    update();
+  }
+
+  void onEntering(String region) {
+    _hoveringOver = region;
+    update();
   }
 
   Future<void> executeAfterBuild() async {

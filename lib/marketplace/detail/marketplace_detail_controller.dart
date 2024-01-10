@@ -26,8 +26,8 @@ class MarketplaceDetailController extends GetxController {
       await setAssetDetail(id!);
       _isReady = true;
       update();
-      super.onInit();
     });
+    super.onInit();
   }
 
   void setReadyStatus(bool value) {

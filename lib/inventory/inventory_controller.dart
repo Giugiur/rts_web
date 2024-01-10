@@ -29,12 +29,6 @@ class InventoryController extends GetxController {
     });
   }
 
-  @override
-  void onReady() {
-    print('onready');
-    super.onReady();
-  }
-
   void getUserAssets() async {
     displayList = [];
     _gettingAssets = true;
