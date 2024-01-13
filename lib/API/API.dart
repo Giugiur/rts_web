@@ -5,11 +5,12 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:rts_web/auth/auth_controller.dart';
+import '../env/env.dart';
 import '../utils/utils.dart';
 
 class API {
 
-  static const API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiIxODczNjNiZS0xOWQ1LTRmMzQtYjZhYy01M2M5Y2I1NWJiYmIiLCJzdWIiOiI2YmQwMjg0Yi03ZTU1LTRhM2YtYTEwYi1kNTI4YjAwMjRlM2MiLCJpYXQiOjE3MDMwODk2OTV9.gfuWWKd7aLD06XpBLRfs2emTOFwb59bNMajIBH9j45Q"; //String.fromEnvironment("API_KEY");
+  static const API_KEY = Env.GameshiftApiKey;
   FirebaseFirestore db = FirebaseFirestore.instance;
 
   Future<void> createFirebaseUser(String email, String password) async {

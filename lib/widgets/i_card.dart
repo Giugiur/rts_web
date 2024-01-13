@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:rts_web/utils/utils.dart';
 import '../NFTs/NFTModel.dart';
+import '../marketplace/marketplace_rarity_tag.dart';
+import '../utils/constants.dart';
 
 class ICard extends StatefulWidget {
   final NFTModel nftModel;
@@ -34,24 +38,43 @@ class _ICardState extends State<ICard> {
           isHover = false;
         });
       },
-      child: Container(
-        height: double.infinity,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: Colors.transparent,
-          boxShadow: [
-            BoxShadow(
-              blurRadius: isHover ? 15 : 2,
-              spreadRadius: isHover ? 5 : 2,
-              color: getRarityColor(widget.nftModel.rarity),
-            )
-          ]
-        ),
-        child: Stack(
-          children: [
-            backgroundImage(),
-          ],
-        ),
+      child: Stack(
+        children: [
+          backgroundImage(),
+          Container(
+            width: 700,
+            height: 1000,
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter, end: Alignment.bottomCenter,
+                colors: [Colors.transparent, Color.fromRGBO(44, 42, 57, 1),],
+                stops: [0.5, 2]
+              ),
+            ),
+            child: Container(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      widget.nftModel.name,
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                    const SizedBox(width: 10,),
+                    Container(
+                      height: 100,
+                      width: 150,
+                      child: MarketplaceRarityTag(widget.nftModel.rarity),
+                    ),
+                  ],
+                )
+              ),
+            ),
+          ),
+
+        ],
       ),
     );
   }
@@ -62,11 +85,10 @@ class _ICardState extends State<ICard> {
       curve: Curves.easeOutCubic,
       top: isHover ? -40 + mousePosition.dy: 0,
       left: isHover ? -50 + mousePosition.dx : -100,
-      height: isHover ? 1000 : 900,
       width: 800,
       child: Container(
-        width: 800,
-        height: 1000,
+        width: 700,
+        height: 1200,
         decoration: BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.cover,
