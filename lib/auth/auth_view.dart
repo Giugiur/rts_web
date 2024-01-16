@@ -21,13 +21,19 @@ class AuthView extends StatelessWidget {
         children: [
           Expanded(
             flex: isSmallScreen(context) ? 0 : 50,
-            child: Container(
-              color: Theme.of(context).colorScheme.primary,
+            child: SizedBox(
+              width: double.infinity,
+              height: double.infinity,
+              child: Image.asset(
+                'images/auth_promo.png',
+                fit: BoxFit.fitHeight,
+              ),
             ),
           ),
           Expanded(
             flex: 50,
             child: Container(
+              decoration: gradientDecoration,
               child: Center(
                 child: SizedBox(
                   width: FORM_WIDTH,

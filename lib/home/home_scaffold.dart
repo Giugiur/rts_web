@@ -4,19 +4,41 @@ import 'package:icons_flutter/icons_flutter.dart';
 import 'package:rts_web/auth/auth_controller.dart';
 import 'package:rts_web/auth/auth_dropdown_menu.dart';
 import 'package:rts_web/home/drawer/home_drawer_list_item.dart';
+import 'package:video_player/video_player.dart';
 import '../marketplace/marketplace_filters.dart';
 import '../utils/constants.dart';
 import 'home_controller.dart';
 import '../utils/utils.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 
-class HomeScaffold extends StatelessWidget {
+class HomeScaffold extends StatefulWidget {
   final Widget body;
 
   HomeScaffold({super.key, required this.body});
 
+  @override
+  State<HomeScaffold> createState() => _HomeScaffoldState();
+}
+
+class _HomeScaffoldState extends State<HomeScaffold> {
   final authController = Get.put(AuthController());
   final _advancedDrawerController = AdvancedDrawerController();
+  late VideoPlayerController _backgroundVideoController;
+
+  @override
+  void initState() {
+    String videoDir = 'videos/home_intro.mp4';
+    _backgroundVideoController = VideoPlayerController.asset(
+        videoDir
+    )
+      ..initialize().then((_) {
+        setState(() {});
+      });
+    _backgroundVideoController.setLooping(true);
+    _backgroundVideoController.setVolume(0);
+    _backgroundVideoController.play();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,17 +106,27 @@ class HomeScaffold extends StatelessWidget {
               ),
             ),
             child: Scaffold(
-              body: SingleChildScrollView(
+              body: SafeArea(
                 child: Stack(
                   children: [
-                    SafeArea(
-                      child: Container(
-                        decoration: gradientDecoration,
-                        width: deviceSize.width,
-                        height: deviceSize.height,
-                        child: body,
+                    SizedBox(
+                      height: deviceSize.height,
+                      width: deviceSize.width,
+                      child: FittedBox(
+                        fit: BoxFit.cover,
+                        child: SizedBox(
+                          width: _backgroundVideoController.value.size.width ?? 0,
+                          height: _backgroundVideoController.value.size.height ?? 0,
+                          child: VideoPlayer(_backgroundVideoController),
+                        ),
                       ),
                     ),
+                    Container(
+                      color: Colors.black87,
+                      width: deviceSize.width,
+                      height: deviceSize.height,
+                    ),
+                    widget.body,
                     AppBar(
                       leading: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 0),
