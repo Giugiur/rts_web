@@ -29,6 +29,7 @@ dependencies:
   tab_container: ^2.0.0
   flutter_animated_button: ^2.0.3
   envied: ^0.5.3
+  syncfusion_flutter_gauges: ^24.1.45
 
 dev_dependencies:
   flutter_test:

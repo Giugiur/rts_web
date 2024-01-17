@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rts_web/marketplace/detail/marketplace_detail_bonus_description.dart';
+import 'package:rts_web/utils/utils.dart';
 import 'package:video_player/video_player.dart';
 import 'package:rts_web/marketplace/detail/marketplace_detail_attribute.dart';
 import 'package:rts_web/marketplace/detail/marketplace_detail_flavor_text.dart';
@@ -68,101 +69,104 @@ class _MarketplaceDetailState extends State<MarketplaceDetail> {
     return GetBuilder<MarketplaceDetailController>(
       init: MarketplaceDetailController(),
       builder: (marketplaceDetailController) => HomeScaffold(
-        body: marketplaceDetailController.isReady ?
-        Row(
-          children: [
-            Expanded(
-              flex: 50,
-              child: Padding(
-                padding: const EdgeInsets.all(0.0),
-                 child: Center(
-                   child: Image.network(marketplaceDetailController.assetDetail.imageUrl),
-                 ),
-              ),
-            ),
-            Container(
-              width: 2,
-              color: Colors.blueGrey,
-            ),
-            Expanded(
-              flex: 50,
-              child: Padding(
-                padding: const EdgeInsets.all(60.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width: double.infinity,
-                      child: Center(
-                        child: Text(
-                          marketplaceDetailController.assetDetail.name,
-                          style: Theme.of(context).textTheme.headlineLarge,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 20,),
-                    MarketplaceRarityTag(marketplaceDetailController.assetDetail.rarity),
-                    const SizedBox(height: 20,),
-                    SizedBox(
-                      child: Text(
-                        marketplaceDetailController.assetDetail.description,
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
-                    ),
-                    const SizedBox(height: 20,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        MarketplaceDetailAttribute('Race: ', marketplaceDetailController.assetDetail.race.label),
-                        const SizedBox(width: 40,),
-                        MarketplaceDetailAttribute('Class: ', marketplaceDetailController.assetDetail.classs.label),
-                        const SizedBox(width: 40,),
-                        MarketplaceDetailAttribute('Category: ', marketplaceDetailController.assetDetail.category),
-                        const SizedBox(width: 40,),
-                        MarketplaceDetailAttribute('Guard Value: ', marketplaceDetailController.assetDetail.guardValue.toString()),
-                      ],
-                    ),
-                    const SizedBox(height: 20,),
-                    marketplaceDetailController.assetDetail.classs == Classs.Unit ? Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        MarketplaceDetailAttribute('Armor Type: ', marketplaceDetailController.assetDetail.armorType),
-                        const SizedBox(width: 40,),
-                        MarketplaceDetailAttribute('Attack Type: ', marketplaceDetailController.assetDetail.attackType),
-                      ],
-                    ) : Container(),
-                    marketplaceDetailController.assetDetail.classs == Classs.Doctrine ||  marketplaceDetailController.assetDetail.classs == Classs.Technology ?
-                        MarketplaceDetailBonusDescription(marketplaceDetailController.assetDetail) : Container(),
-                    const SizedBox(height: 20),
-                    marketplaceDetailController.assetDetail.classs == Classs.Unit || marketplaceDetailController.assetDetail.classs == Classs.Hero ?
-                      Container(width:double.infinity, child: Center(child: MarketplaceDetailPassivePopup(marketplaceDetailController.assetDetail))) : Container(),
-                    const SizedBox(height: 20,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children:[
-                        MarketplaceDetailAttribute('Origination price: USD', marketplaceDetailController.assetDetail.usdPrice.toString()),
-                        const SizedBox(width: 20,),
-                        MarketplaceDetailAttribute('Total Supply: ', marketplaceDetailController.assetDetail.totalSupply),
-                      ]
-                    ),
-                    const SizedBox(height: 20,),
-                    MarketplaceDetailMintButtons(),
-                    const SizedBox(height: 20,),
-                    SizedBox(
-                      width: double.infinity,
-                      child: Center(child: MarketplaceDetailFlavorText(marketplaceDetailController.assetDetail.flavorText))
-                    ),
-                  ],
+        body: Container(
+          decoration: gradientDecoration,
+          child: marketplaceDetailController.isReady ?
+          Row(
+            children: [
+              Expanded(
+                flex: 50,
+                child: Padding(
+                  padding: const EdgeInsets.all(0.0),
+                   child: Center(
+                     child: Image.network(marketplaceDetailController.assetDetail.imageUrl),
+                   ),
                 ),
               ),
-            ),
-          ],
-        ) : const CustomLoadingIndicator()
+              Container(
+                width: 2,
+                color: Colors.blueGrey,
+              ),
+              Expanded(
+                flex: 50,
+                child: Padding(
+                  padding: const EdgeInsets.all(60.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: double.infinity,
+                        child: Center(
+                          child: Text(
+                            marketplaceDetailController.assetDetail.name,
+                            style: Theme.of(context).textTheme.headlineLarge,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 20,),
+                      MarketplaceRarityTag(marketplaceDetailController.assetDetail.rarity),
+                      const SizedBox(height: 20,),
+                      SizedBox(
+                        child: Text(
+                          marketplaceDetailController.assetDetail.description,
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                      ),
+                      const SizedBox(height: 20,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          MarketplaceDetailAttribute('Race: ', marketplaceDetailController.assetDetail.race.label),
+                          const SizedBox(width: 40,),
+                          MarketplaceDetailAttribute('Class: ', marketplaceDetailController.assetDetail.classs.label),
+                          const SizedBox(width: 40,),
+                          MarketplaceDetailAttribute('Category: ', marketplaceDetailController.assetDetail.category),
+                          const SizedBox(width: 40,),
+                          MarketplaceDetailAttribute('Guard Value: ', marketplaceDetailController.assetDetail.guardValue.toString()),
+                        ],
+                      ),
+                      const SizedBox(height: 20,),
+                      marketplaceDetailController.assetDetail.classs == Classs.Unit ? Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          MarketplaceDetailAttribute('Armor Type: ', marketplaceDetailController.assetDetail.armorType),
+                          const SizedBox(width: 40,),
+                          MarketplaceDetailAttribute('Attack Type: ', marketplaceDetailController.assetDetail.attackType),
+                        ],
+                      ) : Container(),
+                      marketplaceDetailController.assetDetail.classs == Classs.Doctrine ||  marketplaceDetailController.assetDetail.classs == Classs.Technology ?
+                          MarketplaceDetailBonusDescription(marketplaceDetailController.assetDetail) : Container(),
+                      const SizedBox(height: 20),
+                      marketplaceDetailController.assetDetail.classs == Classs.Unit || marketplaceDetailController.assetDetail.classs == Classs.Hero ?
+                        Container(width:double.infinity, child: Center(child: MarketplaceDetailPassivePopup(marketplaceDetailController.assetDetail))) : Container(),
+                      const SizedBox(height: 20,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children:[
+                          MarketplaceDetailAttribute('Origination price: USD', marketplaceDetailController.assetDetail.usdPrice.toString()),
+                          const SizedBox(width: 20,),
+                          MarketplaceDetailAttribute('Total Supply: ', marketplaceDetailController.assetDetail.totalSupply),
+                        ]
+                      ),
+                      const SizedBox(height: 20,),
+                      MarketplaceDetailMintButtons(),
+                      const SizedBox(height: 20,),
+                      SizedBox(
+                        width: double.infinity,
+                        child: Center(child: MarketplaceDetailFlavorText(marketplaceDetailController.assetDetail.flavorText))
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ) : const CustomLoadingIndicator(),
+        )
       )
     );
   }

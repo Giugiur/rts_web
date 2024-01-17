@@ -16,7 +16,8 @@ class MarketplaceView extends StatelessWidget {
     return GetBuilder<MarketplaceController>(
       init: MarketplaceController(),
       builder: (marketplaceController) => HomeScaffold(
-        body: Padding(
+        body: Container(
+          decoration: gradientDecoration,
           padding: const EdgeInsets.all(60),
           child: Row(
             children: [

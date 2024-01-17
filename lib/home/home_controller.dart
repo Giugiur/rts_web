@@ -11,10 +11,13 @@ class HomeController extends GetxController {
   String _hoveringOver = '';
   bool introSectionVisible = false;
   bool whitepaperSectionVisible = false;
+  bool marketplaceSectionVisible = false;
+  int _page = 0;
 
   get anchorScrollController => _anchorScrollController;
   get scrolled => _scrolled;
   get hoveringOver => _hoveringOver;
+  get page => _page.toDouble();
 
   void listenForScrolling(pointerSignal) {
     if (pointerSignal is PointerScrollEvent) {
@@ -43,6 +46,26 @@ class HomeController extends GetxController {
     trackingController.showTrackingBanner();
   }
 
+  void setHomePage(int page) {
+    _page = page;
+    switchIntroSectionVisibility(false);
+    switchWhitepaperSectionVisibility(false);
+    switch(page) {
+      case 0:
+        switchIntroSectionVisibility(true);
+        break;
+      case 1:
+        switchWhitepaperSectionVisibility(true);
+        break;
+      case 2:
+        switchMarketplaceSectionVisibility(true);
+        break;
+      default:
+        switchIntroSectionVisibility(true);
+    }
+    update();
+  }
+
   void switchIntroSectionVisibility(bool value) {
     introSectionVisible = value;
     update();
@@ -50,6 +73,11 @@ class HomeController extends GetxController {
 
   void switchWhitepaperSectionVisibility(bool value) {
     whitepaperSectionVisible = value;
+    update();
+  }
+
+  void switchMarketplaceSectionVisibility(bool value) {
+    marketplaceSectionVisible = value;
     update();
   }
 }

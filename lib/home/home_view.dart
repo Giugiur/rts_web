@@ -4,10 +4,12 @@ import 'package:rts_web/home/races/home_races.dart';
 import 'package:rts_web/home/whitepaper/home_whitepaper.dart';
 import 'package:web_smooth_scroll/web_smooth_scroll.dart';
 import 'package:anchor_scroll_controller/anchor_scroll_controller.dart';
+import 'package:syncfusion_flutter_gauges/gauges.dart';
 import 'home_controller.dart';
 import 'home_intro_section.dart';
 import 'home_scaffold.dart';
-import 'locations/home_locations.dart';
+import 'marketplace/home_marketplace.dart';
+
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -18,6 +20,7 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   final PageController _pageController = PageController();
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void dispose() {
@@ -32,27 +35,74 @@ class _HomeViewState extends State<HomeView> {
     return GetBuilder<HomeController>(
       init: HomeController(),
       builder: (homeController) => HomeScaffold(
-        body: PageView(
-          pageSnapping: false,
-          controller: _pageController,
-          scrollDirection: Axis.vertical,
-          onPageChanged: (page) {
-            homeController.switchIntroSectionVisibility(false);
-            homeController.switchWhitepaperSectionVisibility(false);
-            switch(page) {
-              case 0:
-                homeController.switchIntroSectionVisibility(true);
-                break;
-              case 1:
-                homeController.switchWhitepaperSectionVisibility(true);
-                break;
-              default:
-                homeController.switchIntroSectionVisibility(true);
-            }
-          },
-          children: const [
-            HomeIntroSection(),
-            HomeWhitepaper(),
+        body: Stack(
+          children: [
+            PageView(
+              pageSnapping: false,
+              controller: _pageController,
+              scrollDirection: Axis.vertical,
+              onPageChanged: (page) => homeController.setHomePage(page),
+              children: const [
+                HomeIntroSection(),
+                HomeWhitepaper(),
+                HomeMarketplace(),
+              ],
+            ),
+            SizedBox(
+              width: deviceSize.width,
+              height: deviceSize.height,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: SizedBox(
+                  width: deviceSize.width*0.15,
+                  height: deviceSize.height*0.5,
+                  child: SfLinearGauge(
+                      orientation: LinearGaugeOrientation.vertical,
+                      showTicks: false,
+                      isAxisInversed: true,
+                      minimum: 0,
+                      maximum: 4,
+                      interval: 1,
+                      markerPointers: [
+                        LinearShapePointer(
+                          value: homeController.page,
+                          enableAnimation: true,
+                          animationDuration: 600,
+                          animationType: LinearAnimationType.easeInCirc,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                      ],
+                      barPointers: [
+                        LinearBarPointer(
+                          value: homeController.page,
+                          enableAnimation: true,
+                          animationDuration: 600,
+                          animationType: LinearAnimationType.easeInCirc,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                      ],
+                      labelFormatterCallback: (label) {
+                        if (label == '0') {
+                          return 'Intro';
+                        }
+                        if (label == '1') {
+                          return 'Whitepaper';
+                        }
+                        if (label == '2') {
+                          return 'Marketplace';
+                        }
+                        if (label == '3') {
+                          return 'The Known World';
+                        }
+                        if (label == '4') {
+                          return 'Races';
+                        }
+                        return label;
+                      }
+                    ),
+                  ),
+                ),
+              ),
           ],
         ),
       ),

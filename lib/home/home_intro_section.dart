@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:icons_flutter/icons_flutter.dart';
 import 'package:rts_web/widgets/fade_in_container.dart';
 import 'package:video_player/video_player.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
@@ -31,7 +32,7 @@ class _HomeIntroSectionState extends State<HomeIntroSection> {
         child: Align(
           alignment: Alignment.bottomCenter,
           child: Container(
-            height: 300,
+            height: 400,
             padding: const EdgeInsets.only(bottom: 50),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -51,6 +52,18 @@ class _HomeIntroSectionState extends State<HomeIntroSection> {
                   label: 'Sign Up',
                   onTap: () => Get.toNamed(AUTH),
                 ),
+                const SizedBox(height: 50,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    IconButton(onPressed: () {}, icon: Icon(FontAwesome5Brands.twitter)),
+                    const SizedBox(width: 20,),
+                    IconButton(onPressed: () {}, icon: Icon(FontAwesome5Brands.discord)),
+                    const SizedBox(width: 20,),
+                    IconButton(onPressed: () {}, icon: Icon(FontAwesome.medium)),
+                  ],
+                )
               ],
             ),
           ),
