@@ -18,19 +18,6 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   final PageController _pageController = PageController();
-  double currentPageValue = 0.0;
-
-  @override
-  void initState() {
-    _pageController.addListener(() {
-      if (_pageController.page != null && _pageController.page! <= 1.0) {
-        setState(() {
-          currentPageValue = _pageController.page!;
-        });
-      }
-    });
-    super.initState();
-  }
 
   @override
   void dispose() {
@@ -46,10 +33,26 @@ class _HomeViewState extends State<HomeView> {
       init: HomeController(),
       builder: (homeController) => HomeScaffold(
         body: PageView(
+          pageSnapping: false,
           controller: _pageController,
           scrollDirection: Axis.vertical,
-          children: [
-            HomeIntroSection()
+          onPageChanged: (page) {
+            homeController.switchIntroSectionVisibility(false);
+            homeController.switchWhitepaperSectionVisibility(false);
+            switch(page) {
+              case 0:
+                homeController.switchIntroSectionVisibility(true);
+                break;
+              case 1:
+                homeController.switchWhitepaperSectionVisibility(true);
+                break;
+              default:
+                homeController.switchIntroSectionVisibility(true);
+            }
+          },
+          children: const [
+            HomeIntroSection(),
+            HomeWhitepaper(),
           ],
         ),
       ),

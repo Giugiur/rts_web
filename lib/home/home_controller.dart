@@ -9,6 +9,8 @@ class HomeController extends GetxController {
   TrackingController trackingController = Get.put(TrackingController());
   late AnchorScrollController _anchorScrollController;
   String _hoveringOver = '';
+  bool introSectionVisible = false;
+  bool whitepaperSectionVisible = false;
 
   get anchorScrollController => _anchorScrollController;
   get scrolled => _scrolled;
@@ -25,6 +27,7 @@ class HomeController extends GetxController {
   void onInit() {
     _anchorScrollController = AnchorScrollController();
     _hoveringOver = '';
+    switchIntroSectionVisibility(true);
     super.onInit();
     executeAfterBuild();
     update();
@@ -40,4 +43,13 @@ class HomeController extends GetxController {
     trackingController.showTrackingBanner();
   }
 
+  void switchIntroSectionVisibility(bool value) {
+    introSectionVisible = value;
+    update();
+  }
+
+  void switchWhitepaperSectionVisibility(bool value) {
+    whitepaperSectionVisible = value;
+    update();
+  }
 }

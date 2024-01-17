@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rts_web/widgets/fade_in_container.dart';
 import 'package:video_player/video_player.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import '../utils/constants.dart';
@@ -16,55 +17,22 @@ class HomeIntroSection extends StatefulWidget {
 }
 
 class _HomeIntroSectionState extends State<HomeIntroSection> {
-  late VideoPlayerController _backgroundVideoController;
-  late YoutubePlayerController _youtubeVideoController;
-  late ScrollController _controller;
-  @override
-  void initState() {
-    String videoDir = 'videos/home_intro.mp4';
-    _controller = ScrollController();
-    _backgroundVideoController = VideoPlayerController.asset(
-        videoDir
-    )
-      ..initialize().then((_) {
-        setState(() {});
-      });
-    _backgroundVideoController.setLooping(true);
-    _backgroundVideoController.setVolume(0);
-    _backgroundVideoController.play();
-
-    _youtubeVideoController = YoutubePlayerController.fromVideoId(
-      videoId: 'ciFSSd39pAY',
-      autoPlay: false,
-      params: const YoutubePlayerParams(showFullscreenButton: true),
-    );
-    super.initState();
-
-    _controller.addListener(() {
-      setState(() {
-
-      });
-    });
-  }
-
-  @override dispose() {
-    _backgroundVideoController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
 
-    return SizedBox(
-      height: deviceSize.height,
-      width: deviceSize.width,
-      child: Align(
-        alignment: Alignment.bottomCenter,
-        child: Container(
-          height: 300,
-          padding: const EdgeInsets.only(bottom: 50),
-          child: Center(
+    return GetBuilder<HomeController>(
+      init: HomeController(),
+      builder: (homeController) => FadeInContainer(
+      visibility: homeController.introSectionVisible,
+      child: SizedBox(
+        height: deviceSize.height,
+        width: deviceSize.width,
+        child: Align(
+          alignment: Alignment.bottomCenter,
+          child: Container(
+            height: 300,
+            padding: const EdgeInsets.only(bottom: 50),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -72,8 +40,8 @@ class _HomeIntroSectionState extends State<HomeIntroSection> {
                 SizedBox(
                   child: Text(
                     'A Web3, free-to-play,\n'
-                    'AAA, RTS game, focused on\n'
-                    'macro-management mechanics',
+                        'AAA, RTS game, focused on\n'
+                        'macro-management mechanics',
                     style: Theme.of(context).textTheme.headlineLarge,
                     textAlign: TextAlign.center,
                   ),
@@ -87,7 +55,7 @@ class _HomeIntroSectionState extends State<HomeIntroSection> {
             ),
           ),
         ),
-      ),
+      ))
     );
   }
 }
