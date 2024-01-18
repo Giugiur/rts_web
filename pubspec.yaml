@@ -30,13 +30,13 @@ dependencies:
   flutter_animated_button: ^2.0.3
   envied: ^0.5.3
   syncfusion_flutter_gauges: ^24.1.45
+  blurrycontainer: 1.0.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
   get_storage: ^2.1.1
-  web_smooth_scroll: ^1.1.0
   envied_generator: ^0.5.3
   build_runner: ^2.4.7
 

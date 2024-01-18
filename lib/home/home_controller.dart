@@ -12,11 +12,13 @@ class HomeController extends GetxController {
   bool introSectionVisible = false;
   bool whitepaperSectionVisible = false;
   bool marketplaceSectionVisible = false;
+  bool _isCookieBannerVisible = true;
   int _page = 0;
 
   get anchorScrollController => _anchorScrollController;
   get scrolled => _scrolled;
   get hoveringOver => _hoveringOver;
+  get isCookieBannerVisible => _isCookieBannerVisible;
   get page => _page.toDouble();
 
   void listenForScrolling(pointerSignal) {
@@ -28,12 +30,20 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
-    _anchorScrollController = AnchorScrollController();
+    if (trackingController.isTrackingEnabled()) {
+      hideCookiesBanner();
+    }
     _hoveringOver = '';
     switchIntroSectionVisibility(true);
     super.onInit();
     executeAfterBuild();
     update();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
   }
 
   void onEntering(String region) {
@@ -43,13 +53,24 @@ class HomeController extends GetxController {
 
   Future<void> executeAfterBuild() async {
     await Future.delayed(Duration.zero);
-    trackingController.showTrackingBanner();
+  }
+
+  void acceptAllCookies() {
+    trackingController.acceptAllCookies();
+    hideCookiesBanner();
+  }
+
+  void hideCookiesBanner() {
+    trackingController.hideCookiesBanner();
+    _isCookieBannerVisible = false;
+    update();
   }
 
   void setHomePage(int page) {
     _page = page;
     switchIntroSectionVisibility(false);
     switchWhitepaperSectionVisibility(false);
+    switchMarketplaceSectionVisibility(false);
     switch(page) {
       case 0:
         switchIntroSectionVisibility(true);
