@@ -20,11 +20,11 @@ class _FadeInContainerState extends State<FadeInContainer> {
     return Stack(
         children: [
           AnimatedPositioned(
-            duration: const Duration(milliseconds: 1000),
-            right: widget.visibility ? 0 : 200,
+            duration: const Duration(milliseconds: 600),
+            right: widget.visibility ? 0 : 150,
             child: AnimatedOpacity(
               opacity: widget.visibility ? 1 : 0,
-              duration: const Duration(milliseconds: 1250),
+              duration: const Duration(milliseconds: 600),
               child: widget.child,
             ),
           ),

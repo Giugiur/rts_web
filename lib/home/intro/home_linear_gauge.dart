@@ -20,7 +20,7 @@ class _HomeLinearGaugeState extends State<HomeLinearGauge> {
         showTicks: false,
         isAxisInversed: true,
         minimum: 0,
-        maximum: 4,
+        maximum: 3,
         interval: 1,
         markerPointers: [
           LinearShapePointer(
@@ -45,16 +45,13 @@ class _HomeLinearGaugeState extends State<HomeLinearGauge> {
             return 'Intro';
           }
           if (label == '1') {
-            return 'Whitepaper';
+            return 'Races';
           }
           if (label == '2') {
-            return 'Marketplace';
-          }
-          if (label == '3') {
             return 'The Known World';
           }
-          if (label == '4') {
-            return 'Races';
+          if (label == '3') {
+            return 'Whitepaper';
           }
           return label;
         }

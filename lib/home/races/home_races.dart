@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:rts_web/home/races/home_race_page.dart';
-import 'package:tab_container/tab_container.dart';
-
+import 'package:rts_web/home/races/race_tile.dart';
 import '../../NFTs/NFTModel.dart';
+import '../home_controller.dart';
 
 class HomeRaces extends StatelessWidget {
   const HomeRaces({super.key});
@@ -11,77 +12,31 @@ class HomeRaces extends StatelessWidget {
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
 
-    return SizedBox(
+    return GetBuilder<HomeController>(
+      builder: (homeController) => SizedBox(
       width: deviceSize.width,
       height: deviceSize.height,
-      child: TabContainer(
-        // selectedTextStyle: Theme.of(context).textTheme.displayLarge,
-        // unselectedTextStyle: Theme.of(context).textTheme.bodyLarge,
-        isStringTabs: false,
-        radius: 12,
-        tabEdge: TabEdge.bottom,
-        tabCurve: Curves.easeIn,
-        transitionBuilder: (child, animation) {
-          animation = CurvedAnimation(
-              curve: Curves.easeIn, parent: animation);
-          return SlideTransition(
-            position: Tween(
-              begin: const Offset(0.2, 0.0),
-              end: const Offset(0.0, 0.0),
-            ).animate(animation),
-            child: FadeTransition(
-              opacity: animation,
-              child: child,
+      child: Center(
+        child: Row(
+          children: [
+            Expanded(
+              flex: 50,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  InkWell(child: RaceTile(homeController.isEldmenTileSelected, Race.Eldmen), onTap: () => homeController.selectNewTile(Race.Eldmen),),
+                  InkWell(child: RaceTile(homeController.isGrollTileSelected, Race.Grolls), onTap: () => homeController.selectNewTile(Race.Grolls),),
+                  InkWell(child: RaceTile(homeController.isKeldarinTileSelected, Race.Keldarin), onTap: () => homeController.selectNewTile(Race.Keldarin)),
+                  const RaceTile(false, Race.Unknown),
+                  const RaceTile(false, Race.Unknown),
+                ],
+              ),
             ),
-          );
-        },
-        colors: [
-          Race.Keenfolk.color,
-          Race.Travelers.color,
-          Race.Eldmen.color,
-          Race.Keldarin.color,
-          Race.Grolls.color,
-        ],
-        tabs: <Widget> [
-          ListTile(
-            leading: Icon(
-                Race.Keenfolk.icon
-            ),
-            title: Text(Race.Keenfolk.label),
-          ),
-          ListTile(
-            leading: Icon(
-                Race.Travelers.icon
-            ),
-            title: Text(Race.Travelers.label),
-          ),
-          ListTile(
-            leading: Icon(
-                Race.Eldmen.icon
-            ),
-            title: Text(Race.Eldmen.label),
-          ),
-          ListTile(
-            leading: Icon(
-                Race.Keldarin.icon
-            ),
-            title: Text(Race.Keldarin.label),
-          ),
-          ListTile(
-            leading: Icon(
-                Race.Grolls.icon
-            ),
-            title: Text(Race.Grolls.label),
-          ),
-        ],
-        children: [
-          HomeRacePage(Race.Keenfolk),
-          HomeRacePage(Race.Travelers),
-          HomeRacePage(Race.Eldmen),
-          HomeRacePage(Race.Keldarin),
-          HomeRacePage(Race.Grolls),
-        ],
-      ),
+          ],
+        ),
+      )
+      )
     );
   }
 }

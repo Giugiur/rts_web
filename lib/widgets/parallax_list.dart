@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../widgets/hero_button.dart';
-import 'constants.dart';
+import 'hero_button.dart';
+import '../utils/constants.dart';
 
 class ParallaxList extends StatefulWidget {
   const ParallaxList({super.key});

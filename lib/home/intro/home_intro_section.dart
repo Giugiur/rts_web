@@ -5,7 +5,7 @@ import 'package:rts_web/widgets/fade_in_container.dart';
 import 'package:video_player/video_player.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import '../../utils/constants.dart';
-import '../../utils/parallax_list.dart';
+import '../../widgets/parallax_list.dart';
 import '../../widgets/hero_button.dart';
 import '../home_controller.dart';
 

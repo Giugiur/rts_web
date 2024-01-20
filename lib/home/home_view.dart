@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rts_web/home/home_linear_gauge.dart';
+import 'package:rts_web/home/intro/home_linear_gauge.dart';
 import 'package:rts_web/home/races/home_races.dart';
 import 'package:rts_web/home/whitepaper/home_whitepaper.dart';
 import 'package:rts_web/tracking/tracking_controller.dart';
@@ -35,40 +35,54 @@ class _HomeViewState extends State<HomeView> {
     return GetBuilder<HomeController>(
       init: HomeController(),
       builder: (homeController) => HomeScaffold(
-        body: Stack(
+        body: Row(
           children: [
-            PageView(
-              pageSnapping: false,
-              controller: _pageController,
-              scrollDirection: Axis.vertical,
-              onPageChanged: (page) => homeController.setHomePage(page),
-              children: const [
-                HomeIntroSection(),
-                HomeWhitepaper(),
-                HomeMarketplace(),
-              ],
-            ),
-            SizedBox(
-              width: deviceSize.width,
-              height: deviceSize.height,
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: SizedBox(
-                  width: deviceSize.width*0.15,
-                  height: deviceSize.height*0.5,
-                  child: const HomeLinearGauge(),
+            Expanded(
+              flex: 10,
+              child: SizedBox(
+                width: deviceSize.width,
+                height: deviceSize.height,
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: SizedBox(
+                    width: deviceSize.width*0.15,
+                    height: deviceSize.height*0.5,
+                    child: const HomeLinearGauge(),
+                  ),
                 ),
               ),
             ),
-            homeController.isCookieBannerVisible ? SizedBox(
-              width: deviceSize.width,
-              height: deviceSize.height,
-              child: const Align(
-                alignment: Alignment.bottomRight,
-                child: CookieBanner(),
+            Expanded(
+              flex: 90,
+              child: Stack(
+                children: [
+                  PageView(
+                    pageSnapping: false,
+                    controller: _pageController,
+                    scrollDirection: Axis.vertical,
+                    onPageChanged: (page) => homeController.setHomePage(page),
+                    children: const [
+                      HomeRaces(),
+                      HomeIntroSection(),
+                      HomeWhitepaper(),
+                    ],
+                  ),
+                  AnimatedOpacity(
+                    opacity: homeController.isCookieBannerVisible ? 1 : 0,
+                    duration: Duration(milliseconds: 500),
+                    child: SizedBox(
+                      width: deviceSize.width,
+                      height: deviceSize.height,
+                      child: Align(
+                        alignment: Alignment.bottomRight,
+                        child: homeController.isCookieBannerDestroyed ? Container() : const CookieBanner(),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ) : Container(),
-          ],
+            ),
+          ]
         ),
       ),
     );

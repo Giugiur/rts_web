@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
 
 class HeroButton extends StatelessWidget {
+  final double width;
+  final double height;
   final String label;
   final void Function() onTap;
   const HeroButton({
+    this.width = 220,
+    this.height = 50,
     required this.label,
     required this.onTap,
     super.key
@@ -13,9 +17,10 @@ class HeroButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedButton(
-      width: 220,
-      height: 50,
+      width: width,
+      height: height,
       text: label.toUpperCase(),
+      transitionType: TransitionType.CENTER_LR_OUT,
       isReverse: true,
       animatedOn: AnimatedOn.onHover,
       backgroundColor: Colors.transparent,

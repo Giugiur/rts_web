@@ -15,7 +15,8 @@ enum Race {
   Keenfolk('Keenfolk', RpgAwesome.heavy_shield, 'keenfolk', Color(0xFF1f1d12), 'Defensive, Infantry, Industrious, Territorial'),
   Keldarin("Kel'Darin", RpgAwesome.trefoil_lily, 'keldarin', Color(0xFF183d0e), 'Magic, Ranged, Map Vision, Ambush'),
   Grolls('Grolls', RpgAwesome.monster_skull, 'grolls', Color(0xFF521405), 'Aggressive, Swift Movement, Invasive, Unit Income'),
-  Travelers('Travelers', RpgAwesome.arcane_mask, 'travelers', Color(0xFF051c52), 'Dispensable Units, Swarm Tactics, Resurrection, Invocations');
+  Travelers('Travelers', RpgAwesome.arcane_mask, 'travelers', Color(0xFF051c52), 'Dispensable Units, Swarm Tactics, Resurrection, Invocations'),
+  Unknown('???', FontAwesome.question, 'unknown', Colors.black26, '');
 
   const Race(this.label, this.icon, this.name, this.color, this.characterization);
   final String label;

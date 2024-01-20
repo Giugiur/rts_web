@@ -66,7 +66,7 @@ class _HomeDrawerListItemState extends State<HomeDrawerListItem> {
             } else {
               Get.toNamed(HOME);
               Future.delayed(const Duration(milliseconds: 500), () {
-                homeController.anchorScrollController.scrollToIndex(index: widget.route);
+                // homeController.anchorScrollController.scrollToIndex(index: widget.route);
               });
             }
           },

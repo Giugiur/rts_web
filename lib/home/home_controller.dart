@@ -4,29 +4,28 @@ import 'package:get/get.dart';
 import 'package:rts_web/tracking/tracking_controller.dart';
 import 'package:anchor_scroll_controller/anchor_scroll_controller.dart';
 
+import '../NFTs/NFTModel.dart';
+
 class HomeController extends GetxController {
-  bool _scrolled = false;
   TrackingController trackingController = Get.put(TrackingController());
-  late AnchorScrollController _anchorScrollController;
   String _hoveringOver = '';
   bool introSectionVisible = false;
   bool whitepaperSectionVisible = false;
   bool marketplaceSectionVisible = false;
+  bool isEldmenTileSelected = true;
+  bool isGrollTileSelected = false;
+  bool isKeldarinTileSelected = false;
+  bool isKeenfolkTileSelected = false;
+  bool isTravelerTileSelected = false;
   bool _isCookieBannerVisible = true;
+  bool _isCookieBannerDestroyed = false;
   int _page = 0;
 
-  get anchorScrollController => _anchorScrollController;
-  get scrolled => _scrolled;
   get hoveringOver => _hoveringOver;
   get isCookieBannerVisible => _isCookieBannerVisible;
+  get isCookieBannerDestroyed => _isCookieBannerDestroyed;
   get page => _page.toDouble();
 
-  void listenForScrolling(pointerSignal) {
-    if (pointerSignal is PointerScrollEvent) {
-      _scrolled = true;
-    }
-    update();
-  }
 
   @override
   void onInit() {
@@ -46,6 +45,35 @@ class HomeController extends GetxController {
     super.dispose();
   }
 
+  void selectNewTile(Race race) {
+    isEldmenTileSelected = false;
+    isGrollTileSelected = false;
+    isKeldarinTileSelected = false;
+    isKeenfolkTileSelected = false;
+    isTravelerTileSelected = false;
+
+    switch (race) {
+      case Race.Eldmen:
+        isEldmenTileSelected = true;
+        break;
+      case Race.Grolls:
+        isGrollTileSelected = true;
+        break;
+      case Race.Keldarin:
+        isKeldarinTileSelected = true;
+        break;
+      case Race.Keenfolk:
+        isKeenfolkTileSelected = true;
+        break;
+      case Race.Travelers:
+        isTravelerTileSelected = true;
+        break;
+      default:
+        isEldmenTileSelected = true;
+    }
+    update();
+  }
+
   void onEntering(String region) {
     _hoveringOver = region;
     update();
@@ -63,6 +91,13 @@ class HomeController extends GetxController {
   void hideCookiesBanner() {
     trackingController.hideCookiesBanner();
     _isCookieBannerVisible = false;
+    update();
+    destroyCookiesBanner();
+  }
+
+  void destroyCookiesBanner() async {
+    await Future.delayed(const Duration(milliseconds: 500));
+    _isCookieBannerDestroyed = true;
     update();
   }
 
