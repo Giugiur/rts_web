@@ -9,7 +9,9 @@ import '../NFTs/NFTModel.dart';
 class HomeController extends GetxController {
   TrackingController trackingController = Get.put(TrackingController());
   String _hoveringOver = '';
+  Race raceToShow = Race.Eldmen;
   bool introSectionVisible = false;
+  bool racesSectionVisible = true;
   bool whitepaperSectionVisible = false;
   bool marketplaceSectionVisible = false;
   bool isEldmenTileSelected = true;
@@ -51,6 +53,7 @@ class HomeController extends GetxController {
     isKeldarinTileSelected = false;
     isKeenfolkTileSelected = false;
     isTravelerTileSelected = false;
+    raceToShow = race;
 
     switch (race) {
       case Race.Eldmen:
@@ -105,16 +108,16 @@ class HomeController extends GetxController {
     _page = page;
     switchIntroSectionVisibility(false);
     switchWhitepaperSectionVisibility(false);
-    switchMarketplaceSectionVisibility(false);
+    switchRacesSectionVisibility(false);
     switch(page) {
       case 0:
         switchIntroSectionVisibility(true);
         break;
       case 1:
-        switchWhitepaperSectionVisibility(true);
+        switchRacesSectionVisibility(true);
         break;
       case 2:
-        switchMarketplaceSectionVisibility(true);
+        switchWhitepaperSectionVisibility(true);
         break;
       default:
         switchIntroSectionVisibility(true);
@@ -132,8 +135,8 @@ class HomeController extends GetxController {
     update();
   }
 
-  void switchMarketplaceSectionVisibility(bool value) {
-    marketplaceSectionVisible = value;
+  void switchRacesSectionVisibility(bool value) {
+    racesSectionVisible = value;
     update();
   }
 }

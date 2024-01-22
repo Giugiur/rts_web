@@ -64,7 +64,7 @@ class _HomeScaffoldState extends State<HomeScaffold> {
                 ),
               ),
               Container(
-                color: Colors.black54,
+                color: Colors.black.withOpacity(0.8),
                 width: deviceSize.width,
                 height: deviceSize.height,
               ),

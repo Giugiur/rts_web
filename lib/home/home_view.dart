@@ -62,8 +62,8 @@ class _HomeViewState extends State<HomeView> {
                     scrollDirection: Axis.vertical,
                     onPageChanged: (page) => homeController.setHomePage(page),
                     children: const [
-                      HomeRaces(),
                       HomeIntroSection(),
+                      HomeRaces(),
                       HomeWhitepaper(),
                     ],
                   ),

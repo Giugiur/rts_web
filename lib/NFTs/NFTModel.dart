@@ -11,12 +11,12 @@ enum Rarity {
 }
 
 enum Race {
-  Eldmen('Eldmen', RpgAwesome.sunbeams, 'eldmen', Color(0xFF706c12), 'Healing, Religious, Cavalry, Gold Income'),  //2e2e2a //RpgAwesome.angel_wings
-  Keenfolk('Keenfolk', RpgAwesome.heavy_shield, 'keenfolk', Color(0xFF1f1d12), 'Defensive, Infantry, Industrious, Territorial'),
-  Keldarin("Kel'Darin", RpgAwesome.trefoil_lily, 'keldarin', Color(0xFF183d0e), 'Magic, Ranged, Map Vision, Ambush'),
-  Grolls('Grolls', RpgAwesome.monster_skull, 'grolls', Color(0xFF521405), 'Aggressive, Swift Movement, Invasive, Unit Income'),
-  Travelers('Travelers', RpgAwesome.arcane_mask, 'travelers', Color(0xFF051c52), 'Dispensable Units, Swarm Tactics, Resurrection, Invocations'),
-  Unknown('???', FontAwesome.question, 'unknown', Colors.black26, '');
+  Eldmen('Eldmen', RpgAwesome.sunbeams, 'eldmen', Color(0xFFf5f05d), 'Healing, Religious, Cavalry, Gold Income'),  //2e2e2a //RpgAwesome.angel_wings
+  Keenfolk('Keenfolk', RpgAwesome.heavy_shield, 'keenfolk', Color(0xFF8c6316), 'Defensive, Infantry, Industrious, Territorial'),
+  Keldarin("Kel'Darin", RpgAwesome.trefoil_lily, 'keldarin', Color(0xFF0a7d04), 'Magic, Ranged, Map Vision, Ambush'),
+  Grolls('Grolls', RpgAwesome.monster_skull, 'grolls', Color(0xFFd42626), 'Aggressive, Swift Movement, Invasive, Unit Income'),
+  Travelers('Travelers', RpgAwesome.arcane_mask, 'travelers', Color(0xFF182aed), 'Dispensable Units, Swarm Tactics, Resurrection, Invocations'),
+  Unknown('???', FontAwesome.question, 'unknown', Color(0xFF1c1c21), '');
 
   const Race(this.label, this.icon, this.name, this.color, this.characterization);
   final String label;

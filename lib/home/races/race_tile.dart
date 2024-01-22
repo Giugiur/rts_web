@@ -19,40 +19,34 @@ class RaceTile extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         AnimatedContainer(
-          duration: const Duration(milliseconds: 1000),
-          child: Container(
-            width: 7,
-            height: selected? 125 : 120,
-            color: race.color
-          ),
+          duration: const Duration(milliseconds: 200),
+          curve: Curves.easeIn,
+          width: 5,
+          height: selected? 75 : 70,
+          color: race.color
         ),
+        const SizedBox(width: 10,),
         AnimatedContainer(
-          duration: const Duration(milliseconds: 1000),
-          child: Container(
-            width: selected ? 510 : 500,
-            height: selected? 125 : 120,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('images/${race.name.toLowerCase()}_background.png'),
-                colorFilter: ColorFilter.mode(selected ? Colors.black87: Colors.black26, BlendMode.dstATop),
-                fit: BoxFit.cover,
-              ),
-              gradient: const LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  colors: [
-                    Color.fromRGBO(44, 42, 57, 1),
-                    Color.fromRGBO(42, 59, 79, 1)
-                  ]
-              ),
+          duration: const Duration(milliseconds: 200),
+          curve: Curves.easeIn,
+          width: selected ? 510 : 500,
+          height: selected? 75 : 70,
+          decoration: selected ? BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [
+                  Colors.transparent,
+                  race.color.withOpacity(0.5),
+                ]
             ),
-            child: selected ? GlowText(
-              race.label.toUpperCase(),
-              style: TextStyle(fontSize: 34, color: Colors.white),
-            ) : Text(
-              race.label.toUpperCase(),
-              style: Theme.of(context).textTheme.headlineLarge,
-            ),
+          ) : const BoxDecoration(),
+          child: selected ? GlowText(
+            race.label.toUpperCase(),
+            style: const TextStyle(fontSize: 34, color: Colors.white),
+          ) : Text(
+            race.label.toUpperCase(),
+            style: Theme.of(context).textTheme.headlineLarge,
           ),
         ),
       ],
