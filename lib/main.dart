@@ -35,7 +35,7 @@ class RtsWebApp extends StatelessWidget {
       title: 'Timefront',
       debugShowCheckedModeBanner: false,
       theme: darkTheme,
-      home: const SplashScreen(),
+      home: const HomeView(),
       getPages: [
         GetPage(name: HOME, page: () => const HomeView(), transition: Transition.fadeIn),
         GetPage(name: MARKETPLACE, page: () => const MarketplaceView(), transition: Transition.fadeIn),

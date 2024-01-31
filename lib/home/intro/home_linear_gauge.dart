@@ -17,11 +17,13 @@ class _HomeLinearGaugeState extends State<HomeLinearGauge> {
       init: HomeController(),
       builder: (homeController) => SfLinearGauge(
         orientation: LinearGaugeOrientation.vertical,
-        showTicks: false,
+        showLabels: true,
         isAxisInversed: true,
         minimum: 0,
         maximum: 3,
         interval: 1,
+        axisLabelStyle: Theme.of(context).textTheme.bodyMedium,
+        //axisTrackExtent: 30,
         markerPointers: [
           LinearShapePointer(
             value: homeController.page,

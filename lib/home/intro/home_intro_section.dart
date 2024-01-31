@@ -40,9 +40,9 @@ class _HomeIntroSectionState extends State<HomeIntroSection> {
             Spacer(),
             SizedBox(
               child: Text(
-                'A Web3, free-to-play,\n'
-                    'AAA, RTS game, focused on\n'
-                    'macro-management mechanics\n'
+                'A next-gen, free-to-play, \n'
+                'AAA, RTS game, focused on\n'
+                'macro-management mechanics\n'
                 'and custom experiences built in UE5',
                 style: Theme.of(context).textTheme.headlineLarge,
                 textAlign: TextAlign.center,

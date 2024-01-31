@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:icons_flutter/icons_flutter.dart';
 import 'package:rts_web/auth/auth_controller.dart';
-import 'package:rts_web/auth/auth_dropdown_menu.dart';
-import 'package:rts_web/home/drawer/home_drawer_list_item.dart';
-import 'package:video_player/video_player.dart';
-import '../marketplace/marketplace_filters.dart';
-import '../utils/constants.dart';
 import 'home_controller.dart';
 import '../utils/utils.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
@@ -22,21 +16,10 @@ class HomeScaffold extends StatefulWidget {
 
 class _HomeScaffoldState extends State<HomeScaffold> {
   final authController = Get.put(AuthController());
-  final _advancedDrawerController = AdvancedDrawerController();
-  late VideoPlayerController _backgroundVideoController;
+  // final _advancedDrawerController = AdvancedDrawerController();
 
   @override
   void initState() {
-    String videoDir = 'videos/home_intro.mp4';
-    _backgroundVideoController = VideoPlayerController.asset(
-        videoDir
-    )
-      ..initialize().then((_) {
-        setState(() {});
-      });
-    _backgroundVideoController.setLooping(true);
-    _backgroundVideoController.setVolume(0);
-    _backgroundVideoController.play();
     super.initState();
   }
 
@@ -47,32 +30,14 @@ class _HomeScaffoldState extends State<HomeScaffold> {
     return GetBuilder<HomeController>(
       init: HomeController(),
       builder: (homeController) =>
-    Scaffold(
-        body: SafeArea(
-          child: Stack(
-            children: [
-              SizedBox(
-                height: deviceSize.height,
-                width: deviceSize.width,
-                child: FittedBox(
-                  fit: BoxFit.cover,
-                  child: SizedBox(
-                    width: _backgroundVideoController.value.size.width ?? 0,
-                    height: _backgroundVideoController.value.size.height ?? 0,
-                    child: VideoPlayer(_backgroundVideoController),
-                  ),
-                ),
-              ),
-              Container(
-                color: Colors.black.withOpacity(0.8),
-                width: deviceSize.width,
-                height: deviceSize.height,
-              ),
-              widget.body,
-            ],
+        Scaffold(
+          body: SafeArea(
+            child: Container(
+              decoration: gradientDecoration,
+              child: widget.body,
+            ),
           ),
-        ),
-    )
+        )
           // AdvancedDrawer(
           //   backdrop: Container(
           //     width: double.infinity,
@@ -217,8 +182,8 @@ class _HomeScaffoldState extends State<HomeScaffold> {
     );
   }
 
-  void _handleMenuButtonPressed() {
-    _advancedDrawerController.showDrawer();
-  }
+  // void _handleMenuButtonPressed() {
+  //   _advancedDrawerController.showDrawer();
+  // }
 }
 

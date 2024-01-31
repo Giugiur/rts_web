@@ -19,15 +19,15 @@ class RaceTile extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
+          duration: const Duration(milliseconds: 250),
           curve: Curves.easeIn,
           width: 5,
           height: selected? 75 : 70,
-          color: race.color
+          color: selected ? race.color : const Color(0xFF1c1c21),
         ),
         const SizedBox(width: 10,),
         AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
+          duration: const Duration(milliseconds: 250),
           curve: Curves.easeIn,
           width: selected ? 510 : 500,
           height: selected? 75 : 70,
@@ -41,13 +41,20 @@ class RaceTile extends StatelessWidget {
                 ]
             ),
           ) : const BoxDecoration(),
-          child: selected ? GlowText(
-            race.label.toUpperCase(),
-            style: const TextStyle(fontSize: 34, color: Colors.white),
-          ) : Text(
-            race.label.toUpperCase(),
-            style: Theme.of(context).textTheme.headlineLarge,
+          child: Row(
+            children: [
+              Icon(race.icon),
+              const SizedBox(width: 10,),
+              selected ? GlowText(
+                race.label.toUpperCase(),
+                style: const TextStyle(fontSize: 34, color: Colors.white),
+              ) : Text(
+                race.label.toUpperCase(),
+                style: Theme.of(context).textTheme.headlineLarge,
+              ),
+            ],
           ),
+
         ),
       ],
     );

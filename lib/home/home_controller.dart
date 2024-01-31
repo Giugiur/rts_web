@@ -10,6 +10,7 @@ class HomeController extends GetxController {
   TrackingController trackingController = Get.put(TrackingController());
   String _hoveringOver = '';
   Race raceToShow = Race.Eldmen;
+  bool isFirstVisit = true;
   bool introSectionVisible = false;
   bool racesSectionVisible = true;
   bool whitepaperSectionVisible = false;
@@ -38,13 +39,54 @@ class HomeController extends GetxController {
     switchIntroSectionVisibility(true);
     super.onInit();
     executeAfterBuild();
+    Timer(const Duration(milliseconds: 1500), () {
+      isFirstVisit = false;
+      update();
+    });
     update();
   }
+
 
   @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
+  }
+
+  void setHomePage(int page) {
+    _page = page;
+    switchIntroSectionVisibility(false);
+    switchWhitepaperSectionVisibility(false);
+    switchRacesSectionVisibility(false);
+    switch(page) {
+      case 0:
+        switchIntroSectionVisibility(true);
+        break;
+      case 1:
+        switchRacesSectionVisibility(true);
+        break;
+      case 2:
+        switchWhitepaperSectionVisibility(true);
+        break;
+      default:
+        switchIntroSectionVisibility(true);
+    }
+    update();
+  }
+
+  void switchIntroSectionVisibility(bool value) {
+    introSectionVisible = value;
+    update();
+  }
+
+  void switchWhitepaperSectionVisibility(bool value) {
+    whitepaperSectionVisible = value;
+    update();
+  }
+
+  void switchRacesSectionVisibility(bool value) {
+    racesSectionVisible = value;
+    update();
   }
 
   void selectNewTile(Race race) {
@@ -104,39 +146,4 @@ class HomeController extends GetxController {
     update();
   }
 
-  void setHomePage(int page) {
-    _page = page;
-    switchIntroSectionVisibility(false);
-    switchWhitepaperSectionVisibility(false);
-    switchRacesSectionVisibility(false);
-    switch(page) {
-      case 0:
-        switchIntroSectionVisibility(true);
-        break;
-      case 1:
-        switchRacesSectionVisibility(true);
-        break;
-      case 2:
-        switchWhitepaperSectionVisibility(true);
-        break;
-      default:
-        switchIntroSectionVisibility(true);
-    }
-    update();
-  }
-
-  void switchIntroSectionVisibility(bool value) {
-    introSectionVisible = value;
-    update();
-  }
-
-  void switchWhitepaperSectionVisibility(bool value) {
-    whitepaperSectionVisible = value;
-    update();
-  }
-
-  void switchRacesSectionVisibility(bool value) {
-    racesSectionVisible = value;
-    update();
-  }
 }

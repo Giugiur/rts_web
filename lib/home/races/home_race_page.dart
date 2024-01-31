@@ -29,20 +29,20 @@ class _HomeRacePageState extends State<HomeRacePage> {
                 children: [
                   Expanded(
                     flex: 50,
-                    child: Text(
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus. Donec augue elit, rhoncus ac sodales id, porttitor vitae est. Donec laoreet rutrum libero sed pharetra. Duis a arcu convallis, gravida purus eget, mollis diam. \n"
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus. Donec augue elit, rhoncus ac sodales id, porttitor vitae est. Donec laoreet rutrum libero sed pharetra. Duis a arcu convallis, gravida purus eget, mollis diam. \n",
-                      textAlign: TextAlign.left,
-                      style: Theme
-                        .of(context)
-                        .textTheme
-                        .bodyLarge,
+                    child: Image.asset(
+                      'images/${widget.race.name.toLowerCase()}_keyart.png',
                     ),
                   ),
                   Expanded(
                     flex: 50,
-                    child: Image.asset(
-                      'images/${widget.race.name.toLowerCase()}_keyart.png',
+                    child: Text(
+                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus. Donec augue elit, rhoncus ac sodales id, porttitor vitae est. Donec laoreet rutrum libero sed pharetra. Duis a arcu convallis, gravida purus eget, mollis diam. \n"
+                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus. Donec augue elit, rhoncus ac sodales id, porttitor vitae est. Donec laoreet rutrum libero sed pharetra. Duis a arcu convallis, gravida purus eget, mollis diam. \n",
+                      textAlign: TextAlign.right,
+                      style: Theme
+                        .of(context)
+                        .textTheme
+                        .bodyLarge,
                     ),
                   ),
                 ],

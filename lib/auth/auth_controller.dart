@@ -12,11 +12,9 @@ class AuthController extends GetxController {
   String _password = "";
   String _forgottenEmail = "";
   String _authUID = "";
-  bool _passwordIsTooWeak = false;
-  bool _emailAlreadyInUse = false;
+  String _errorMessage = "";
   bool _signingUp = false;
   bool _signingIn = false;
-  bool _emptyFields = false;
   bool _isOnSignUpMode = true;
   bool _sendingForgottenEmail = false;
   RxBool _isUserSignedIn = false.obs;
@@ -25,14 +23,12 @@ class AuthController extends GetxController {
   get password => _password;
   get forgottenEmail => _forgottenEmail;
   get authUID => _authUID;
-  get passwordIsTooWeak => _passwordIsTooWeak;
-  get emailAlreadyInUse => _emailAlreadyInUse;
   get signingUp => _signingUp;
   get signingIn => _signingIn;
-  get emptyFields => _emptyFields;
   get isOnSignUpMode => _isOnSignUpMode;
   get sendingForgottenEmail => _sendingForgottenEmail;
   get isUserSignedIn => _isUserSignedIn;
+  get errorMessage => _errorMessage;
 
   var api = API();
 
@@ -51,31 +47,28 @@ class AuthController extends GetxController {
 
   void createUser() async {
     _signingUp = true;
-    _passwordIsTooWeak = false;
-    _emailAlreadyInUse = false;
-    _emptyFields = false;
     update();
     if (_email == "" || _password == "") {
-      _emptyFields = true;
+      _errorMessage = "There are empty fields";
     } else {//TODO: Try this
-      // try {
-      //   await FirebaseAuth.instance.createUserWithEmailAndPassword(
-      //     email: _email,
-      //     password: _password,
-      //   ).then((value) {
-      //     api.registerUser(_email, value.user!.uid);
-      //     signInUser();
-      //   });
-      // } on FirebaseAuthException catch (e) {
-      //   if (e.code == 'weak-password') {
-      //     _passwordIsTooWeak = true;
-      //   } else if (e.code == 'email-already-in-use') {
-      //     _emailAlreadyInUse = true;
-      //   }
-      // } catch (e) {
-      //   print(e);
-      // }
-      await api.createFirebaseUser(_email, _password);
+      try {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: _email,
+          password: _password,
+        ).then((value) {
+          api.registerUser(_email, value.user!.uid);
+          signInUser();
+        });
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'weak-password') {
+          _errorMessage = 'Password is too weak';
+        } else if (e.code == 'email-already-in-use') {
+          _errorMessage = 'Email is already in use';
+        }
+      } catch (e) {
+        print(e);
+      }
+      // await api.createFirebaseUser(_email, _password);
     }
     _signingUp = false;
     update();

@@ -32,7 +32,7 @@ class CookieBanner extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      'Cookie Policy'.toUpperCase(),
+                      'Cookies Policy'.toUpperCase(),
                       style: Theme.of(context).textTheme.displayLarge,
                       textAlign: TextAlign.start,
                     ),
