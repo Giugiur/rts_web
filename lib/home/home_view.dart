@@ -135,8 +135,8 @@ class _HomeViewState extends State<HomeView> {
             opacity: homeController.isFirstVisit ? 1 : 0,
             duration: const Duration(milliseconds: 750),
             child: Container(
-              width: deviceSize.width,
-              height: deviceSize.height,
+              width: homeController.isFirstVisit ? deviceSize.width : 0,
+              height: homeController.isFirstVisit ? deviceSize.height : 0,
               decoration: gradientDecoration,
               child: Image.asset(
                 'images/loading.gif',
