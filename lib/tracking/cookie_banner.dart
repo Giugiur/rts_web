@@ -1,6 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:icons_flutter/icons_flutter.dart';
 import 'package:rts_web/home/home_controller.dart';
 import 'package:rts_web/widgets/hero_button.dart';
 import 'package:blurrycontainer/blurrycontainer.dart';
@@ -38,7 +38,7 @@ class CookieBanner extends StatelessWidget {
                     ),
                     IconButton(
                       icon: const Icon(
-                        Octicons.x,
+                        CupertinoIcons.xmark,
                         size: 18,
                       ),
                       onPressed: () => homeController.hideCookiesBanner(),

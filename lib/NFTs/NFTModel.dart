@@ -1,6 +1,5 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:icons_flutter/icons_flutter.dart';
 
 enum Rarity {
   Common,
@@ -11,12 +10,12 @@ enum Rarity {
 }
 
 enum Race {
-  Eldmen('Eldmen', RpgAwesome.sunbeams, 'eldmen', Color(0xFFf5f05d), 'Healing, Religious, Cavalry, Gold Income'),  //2e2e2a //RpgAwesome.angel_wings
-  Keenfolk('Keenfolk', RpgAwesome.heavy_shield, 'keenfolk', Color(0xFF8c6316), 'Defensive, Infantry, Industrious, Territorial'),
-  Keldarin("Kel'Darin", RpgAwesome.trefoil_lily, 'keldarin', Color(0xFF0a7d04), 'Magic, Ranged, Map Vision, Ambush'),
-  Grolls('Grolls', RpgAwesome.monster_skull, 'grolls', Color(0xFFd42626), 'Aggressive, Swift Movement, Invasive, Unit Income'),
-  Travelers('Travelers', RpgAwesome.arcane_mask, 'travelers', Color(0xFF182aed), 'Dispensable Units, Swarm Tactics, Resurrection, Invocations'),
-  Unknown('', FontAwesome.question, 'unknown', Color(0xFF1c1c21), '');
+  Eldmen('Eldmen', Icons.sunny, 'eldmen', Color(0xFFf5f05d), 'Healing, Religious, Cavalry, Gold Income'),  //2e2e2a //RpgAwesome.angel_wings
+  Keenfolk('Keenfolk', Icons.shield, 'keenfolk', Color(0xFF8c6316), 'Defensive, Infantry, Industrious, Territorial'),
+  Keldarin("Kel'Darin", Icons.account_tree, 'keldarin', Color(0xFF0a7d04), 'Magic, Ranged, Map Vision, Ambush'),
+  Grolls('Grolls', Icons.wallet, 'grolls', Color(0xFFd42626), 'Aggressive, Swift Movement, Invasive, Unit Income'),
+  Travelers('Travelers', Icons.smoke_free, 'travelers', Color(0xFF182aed), 'Dispensable Units, Swarm Tactics, Resurrection, Invocations'),
+  Unknown('', Icons.question_mark, 'unknown', Color(0xFF1c1c21), '');
 
   const Race(this.label, this.icon, this.name, this.color, this.characterization);
   final String label;

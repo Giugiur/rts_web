@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:icons_flutter/icons_flutter.dart';
 import 'package:rts_web/widgets/fade_in_container.dart';
 import 'package:video_player/video_player.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
@@ -58,11 +57,9 @@ class _HomeIntroSectionState extends State<HomeIntroSection> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                IconButton(onPressed: () {}, icon: const Icon(FontAwesome5Brands.twitter)),
+                IconButton(onPressed: () {}, icon: const Icon(Icons.facebook)),
                 const SizedBox(width: 20,),
-                IconButton(onPressed: () {}, icon: const Icon(FontAwesome5Brands.discord)),
-                const SizedBox(width: 20,),
-                IconButton(onPressed: () {}, icon: const Icon(FontAwesome.medium)),
+                IconButton(onPressed: () {}, icon: const Icon(Icons.discord)),
               ],
             )
           ],
