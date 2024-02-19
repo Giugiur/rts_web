@@ -58,6 +58,7 @@ class MarketplaceDetailController extends GetxController {
   Future<void> mintWithCreditCard() async {
     if (authController.isUserSignedIn.value) {
       api.assetTemplateCheckout(assetDetail.id).then((response) {
+        print(json.decode(response.body));
         String url = json.decode(response.body)['url'];
         html.window.open(url, "_blank");
         //To Do: Send to inventory after a time

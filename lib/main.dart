@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:rts_web/auth/auth_forgotten.dart';
 import 'package:rts_web/marketplace/detail/marketplace_detail.dart';
+import 'package:rts_web/splash_screen/password_wall.dart';
 import 'package:rts_web/tracking/firebase_options.dart';
 import 'API/API.dart';
 import 'inventory/inventory_view.dart';
@@ -35,7 +36,7 @@ class RtsWebApp extends StatelessWidget {
       title: 'Timefront',
       debugShowCheckedModeBanner: false,
       theme: darkTheme,
-      home: const HomeView(),
+      home: const PasswordWall(),
       getPages: [
         GetPage(name: HOME, page: () => const HomeView(), transition: Transition.fadeIn),
         GetPage(name: MARKETPLACE, page: () => const MarketplaceView(), transition: Transition.fadeIn),

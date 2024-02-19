@@ -118,9 +118,10 @@ class API {
   Future<http.Response> assetTemplateCheckout(String assetTemplateID) async {
     final AuthController authController = Get.put(AuthController());
     final url = Uri.parse('https://api.gameshift.dev/asset-templates/$assetTemplateID/checkout');
+    print(authController.authUID);
     Map data = {
       'quantity': 1,
-      'amountCents': 1000,
+      'priceCents': 1000,
       'buyerId': authController.authUID,
     };
     var body = json.encode(data);
